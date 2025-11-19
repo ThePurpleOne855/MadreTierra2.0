@@ -1,3 +1,5 @@
+import homePageImg from '../NewSelection/Home-Page.jpeg'
+
 const About = () => {
   return (
     <section id="about" className="py-24 bg-light">
@@ -17,7 +19,13 @@ const About = () => {
               Recently introduced to the U.S. market by owners Juanna De La Cruz, John Deans, and Jacob Senior, Madre Tierra made its first major debut during a "Cut-n-Light" event at Smoke Rings-72, a premier cigar lounge located in Merritt Island, FL. We are excited to share our passion and craftsmanship with cigar enthusiasts across America.
             </p>
           </div>
-          <div className="h-[500px] bg-gradient-to-br from-primary to-tertiary rounded shadow-2xl"></div>
+          <div className="h-[500px] rounded shadow-2xl overflow-hidden">
+            <img
+              src={homePageImg}
+              alt="Madre Tierra Cigars"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
       </div>
     </section>

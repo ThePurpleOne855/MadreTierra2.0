@@ -34,9 +34,18 @@ const Contact = () => {
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
 
-      // Validate environment variables
-      if (!publicKey || !serviceId || !templateId) {
-        throw new Error('EmailJS configuration is missing. Please check your environment variables.')
+      // Validate environment variables with detailed error messages
+      if (!publicKey) {
+        console.error('Missing VITE_EMAILJS_PUBLIC_KEY')
+        throw new Error('EmailJS Public Key is missing. Please configure VITE_EMAILJS_PUBLIC_KEY in your environment variables.')
+      }
+      if (!serviceId) {
+        console.error('Missing VITE_EMAILJS_SERVICE_ID')
+        throw new Error('EmailJS Service ID is missing. Please configure VITE_EMAILJS_SERVICE_ID in your environment variables.')
+      }
+      if (!templateId) {
+        console.error('Missing VITE_EMAILJS_TEMPLATE_ID')
+        throw new Error('EmailJS Template ID is missing. Please configure VITE_EMAILJS_TEMPLATE_ID in your environment variables.')
       }
 
       // Initialize EmailJS with public key
@@ -54,7 +63,8 @@ const Contact = () => {
         }
       )
 
-      if (result.status === 200) {
+      // Check for successful response
+      if (result && (result.status === 200 || result.text === 'OK')) {
         setSubmitStatus('success')
         setFormData({
           name: '',
@@ -63,10 +73,26 @@ const Contact = () => {
           message: ''
         })
       } else {
+        console.error('EmailJS returned non-success status:', result)
         setSubmitStatus('error')
       }
     } catch (error) {
-      console.error('EmailJS Error:', error)
+      console.error('EmailJS Error Details:', {
+        message: error.message,
+        text: error.text,
+        status: error.status,
+        stack: error.stack
+      })
+      
+      // Provide more specific error messages
+      let errorMessage = 'Something went wrong. Please try again later.'
+      if (error.message) {
+        errorMessage = error.message
+      } else if (error.text) {
+        errorMessage = error.text
+      }
+      
+      console.error('Full error:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
