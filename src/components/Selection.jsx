@@ -1,4 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
+import broadleafImg from '../NewSelection/Broadleaf.jpeg'
+import cameroonImg from '../NewSelection/Cameroon.jpeg'
+import candelaImg from '../NewSelection/Candela.jpeg'
+import corojoImg from '../NewSelection/Corojo.jpeg'
+import habanoImg from '../NewSelection/Habano.jpeg'
+import laFumaRicardoImg from '../NewSelection/La-Fuma-Ricardo.jpeg'
+import rosadoImg from '../NewSelection/Rosado.jpeg'
+import sanAndresImg from '../NewSelection/San Andres.jpeg'
+import connecticutImg from '../MadreTierraSelection/Connecticut toro 6x52 mild.avif'
+import sumatraImg from '../MadreTierraSelection/sumatra toro 6x52 med-full.avif'
 
 const CigarCard = ({ name, image, strength, size }) => {
   const cardRef = useRef(null)
@@ -101,61 +111,61 @@ const Selection = () => {
   const cigars = [
     {
       name: 'Broadleaf Toro',
-      image: new URL('../MadreTierraSelection/broadleaf toro 6x52 full.avif', import.meta.url).href,
+      image: broadleafImg,
       size: '6x52',
       strength: 'Full',
     },
     {
       name: 'Cameroon Toro',
-      image: new URL('../MadreTierraSelection/Cameroon toro 6x52 mild-med.avif', import.meta.url).href,
+      image: cameroonImg,
       size: '6x52',
       strength: 'Mild-Medium',
     },
     {
       name: 'Candela Toro',
-      image: new URL('../MadreTierraSelection/candela toro 6x52.avif', import.meta.url).href,
+      image: candelaImg,
       size: '6x52',
       strength: 'Mild',
     },
     {
       name: 'Connecticut Toro',
-      image: new URL('../MadreTierraSelection/Connecticut toro 6x52 mild.avif', import.meta.url).href,
+      image: connecticutImg,
       size: '6x52',
       strength: 'Mild',
     },
     {
       name: 'Corojo Toro',
-      image: new URL('../MadreTierraSelection/corojo toro 6x52 full.avif', import.meta.url).href,
+      image: corojoImg,
       size: '6x52',
       strength: 'Full',
     },
     {
       name: 'Habano Toro',
-      image: new URL('../MadreTierraSelection/Habano Toro 6x52 medium.avif', import.meta.url).href,
+      image: habanoImg,
       size: '6x52',
       strength: 'Medium',
     },
     {
       name: 'La Fuma Ricardo',
-      image: new URL('../MadreTierraSelection/la fuma ricardo budget cigar 6x50 mild-medium.avif', import.meta.url).href,
+      image: laFumaRicardoImg,
       size: '6x50',
       strength: 'Mild-Medium',
     },
     {
       name: 'Rosado Toro',
-      image: new URL('../MadreTierraSelection/rosado toro 6x52 mild.avif', import.meta.url).href,
+      image: rosadoImg,
       size: '6x52',
       strength: 'Mild',
     },
     {
       name: 'San Andres Toro',
-      image: new URL('../MadreTierraSelection/san andres toro 6x52 full.avif', import.meta.url).href,
+      image: sanAndresImg,
       size: '6x52',
       strength: 'Full',
     },
     {
       name: 'Sumatra Toro',
-      image: new URL('../MadreTierraSelection/sumatra toro 6x52 med-full.avif', import.meta.url).href,
+      image: sumatraImg,
       size: '6x52',
       strength: 'Medium-Full',
     },
