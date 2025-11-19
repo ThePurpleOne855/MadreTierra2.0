@@ -33,6 +33,7 @@ const Contact = () => {
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+      const visitorTemplateId = import.meta.env.VITE_EMAILJS_VISITOR_TEMPLATE_ID // Optional: for visitor confirmation
 
       // Validate environment variables with detailed error messages
       if (!publicKey) {
@@ -51,8 +52,8 @@ const Contact = () => {
       // Initialize EmailJS with public key
       emailjs.init(publicKey)
 
-      // Send email using EmailJS
-      const result = await emailjs.send(
+      // Send notification email to you (owner)
+      const ownerResult = await emailjs.send(
         serviceId,
         templateId,
         {
@@ -63,8 +64,27 @@ const Contact = () => {
         }
       )
 
+      // Send confirmation email to visitor (optional - only if template ID is provided)
+      if (visitorTemplateId) {
+        try {
+          await emailjs.send(
+            serviceId,
+            visitorTemplateId,
+            {
+              visitor_name: formData.name,
+              visitor_email: formData.email,
+              visitor_subject: formData.subject,
+              visitor_message: formData.message,
+            }
+          )
+        } catch (visitorError) {
+          // Log but don't fail if visitor email fails
+          console.warn('Visitor confirmation email failed:', visitorError)
+        }
+      }
+
       // Check for successful response
-      if (result && (result.status === 200 || result.text === 'OK')) {
+      if (ownerResult && (ownerResult.status === 200 || ownerResult.text === 'OK')) {
         setSubmitStatus('success')
         setFormData({
           name: '',
@@ -73,7 +93,7 @@ const Contact = () => {
           message: ''
         })
       } else {
-        console.error('EmailJS returned non-success status:', result)
+        console.error('EmailJS returned non-success status:', ownerResult)
         setSubmitStatus('error')
       }
     } catch (error) {

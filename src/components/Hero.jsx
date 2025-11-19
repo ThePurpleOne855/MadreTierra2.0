@@ -1,3 +1,5 @@
+import logoImage from '../logo/madre-tierra-cigarslogo.avif'
+
 const Hero = () => {
   return (
     <section id="home" className="relative h-screen flex items-center justify-center text-center overflow-hidden bg-gradient-to-br from-primary to-dark">
@@ -10,11 +12,23 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-dark/70"></div>
       
       <div className="relative z-10 max-w-4xl px-5 animate-fade-in-up">
-        <h1 className="text-5xl md:text-7xl font-serif font-bold text-light mb-4 tracking-wide">
-          Evolution of an Icon
-        </h1>
+        <div className="mb-6 flex justify-center">
+          <img 
+            src={logoImage} 
+            alt="MadreTierra Cigars" 
+            className="h-24 md:h-32 lg:h-40 w-auto object-contain max-w-[90%] drop-shadow-2xl"
+            onError={(e) => {
+              // Fallback to text if image fails to load
+              e.target.style.display = 'none'
+              e.target.nextElementSibling.style.display = 'block'
+            }}
+          />
+          <h1 className="hidden text-5xl md:text-7xl font-serif font-bold text-light tracking-wide">
+            MadreTierra Cigars
+          </h1>
+        </div>
         <p className="text-xl md:text-2xl text-secondary mb-10 font-light tracking-wide">
-          Handcrafted Excellence Since Our Inception
+          The Best Cigars You Have Never Smoked!
         </p>
         <a
           href="/selection"
