@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 
+// Import all location images using Vite's glob import
+const locationImages = import.meta.glob('../Locations/*.avif', { eager: true, as: 'url' })
+
 const LocationCard = ({ name, location, image, index }) => {
   const cardRef = useRef(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -127,8 +130,8 @@ const Locations = () => {
 
   const locations = locationFiles.map((file, index) => {
     const info = parseLocationInfo(file)
-    // Use a simpler path approach that works with Vite
-    const imagePath = `/src/Locations/${file}`
+    // Get image path from glob imports
+    const imagePath = locationImages[`../Locations/${file}`] || ''
     return {
       ...info,
       image: imagePath,
