@@ -2,13 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 import broadleafImg from '../NewSelection/Broadleaf.jpeg'
 import cameroonImg from '../NewSelection/Cameroon.jpeg'
 import candelaImg from '../NewSelection/Candela.jpeg'
+import connecticutImg from '../NewSelection/Connecticut.jpeg'
 import corojoImg from '../NewSelection/Corojo.jpeg'
 import habanoImg from '../NewSelection/Habano.jpeg'
 import laFumaRicardoImg from '../NewSelection/La-Fuma-Ricardo.jpeg'
 import rosadoImg from '../NewSelection/Rosado.jpeg'
 import sanAndresImg from '../NewSelection/San Andres.jpeg'
-import connecticutImg from '../MadreTierraSelection/Connecticut toro 6x52 mild.avif'
-import sumatraImg from '../MadreTierraSelection/sumatra toro 6x52 med-full.avif'
+import sumatraImg from '../NewSelection/Sumatra.jpeg'
 
 const CigarCard = ({ name, image, strength, size }) => {
   const cardRef = useRef(null)
