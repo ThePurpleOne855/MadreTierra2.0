@@ -7,7 +7,7 @@ const VisitorTracker = () => {
   const location = useLocation()
   const hasTrackedVisit = useRef(false)
   const cooldownKey = 'visit_tracked_cooldown'
-  const cooldownMinutes = 5 // Cooldown period in minutes to prevent spam
+  const cooldownSeconds = 30 // Cooldown period in seconds to prevent spam
 
   useEffect(() => {
     // Check if we've already tracked this visit (prevent duplicate calls)
@@ -20,11 +20,11 @@ const VisitorTracker = () => {
     if (lastVisit) {
       const lastVisitTime = parseInt(lastVisit, 10)
       const now = Date.now()
-      const minutesSinceLastVisit = (now - lastVisitTime) / (1000 * 60)
+      const secondsSinceLastVisit = (now - lastVisitTime) / 1000
       
       // If within cooldown period, skip tracking
-      if (minutesSinceLastVisit < cooldownMinutes) {
-        console.log(`Visit tracking skipped (cooldown): ${Math.round(cooldownMinutes - minutesSinceLastVisit)} minutes remaining`)
+      if (secondsSinceLastVisit < cooldownSeconds) {
+        console.log(`Visit tracking skipped (cooldown): ${Math.round(cooldownSeconds - secondsSinceLastVisit)} seconds remaining`)
         return
       }
     }
