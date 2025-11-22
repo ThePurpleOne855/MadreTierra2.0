@@ -27,13 +27,16 @@ export default async function handler(req, res) {
     // Get owner email from environment variable
     const ownerEmail = process.env.OWNER_EMAIL
     if (!ownerEmail) {
-      console.error('OWNER_EMAIL environment variable not set')
+      console.error('❌ OWNER_EMAIL environment variable not set')
       res.status(500).json({
         success: false,
         error: 'Owner email not configured',
+        debug: 'Set OWNER_EMAIL environment variable in Vercel dashboard',
       })
       return
     }
+
+    console.log('📧 Processing visit notification for:', ownerEmail)
 
     // Get visitor information from request
     const {
@@ -152,6 +155,9 @@ export default async function handler(req, res) {
     
     const RESEND_API_KEY = process.env.RESEND_API_KEY
 
+    console.log('🔑 Resend API Key present:', RESEND_API_KEY ? 'Yes' : 'No')
+    console.log('📧 From Email:', process.env.FROM_EMAIL || 'onboarding@resend.dev (default)')
+
     if (RESEND_API_KEY) {
       // Using Resend (recommended)
       try {
@@ -169,9 +175,11 @@ export default async function handler(req, res) {
         })
 
         if (result.error) {
-          console.error('Resend API error:', result.error)
+          console.error('❌ Resend API error:', result.error)
           throw new Error(result.error.message || 'Failed to send email')
         }
+
+        console.log('✅ Email sent successfully via Resend:', result.data?.id)
 
         res.status(200).json({
           success: true,
@@ -221,18 +229,20 @@ export default async function handler(req, res) {
     }
 
     // Fallback: Log to console (for testing)
-    console.log('📧 VISIT NOTIFICATION (email service not configured):', {
+    console.log('⚠️ VISIT NOTIFICATION (email service not configured):', {
       to: ownerEmail,
       subject: emailSubject,
       visitorIP,
       page,
       timestamp,
     })
+    console.log('⚠️ To enable emails: Set RESEND_API_KEY in Vercel environment variables')
 
     res.status(200).json({
       success: true,
       message: 'Visit logged (email service not configured - check console)',
       note: 'Set RESEND_API_KEY or SENDGRID_API_KEY in environment variables to enable email notifications',
+      debug: 'Check Vercel function logs for more details',
     })
 
   } catch (error) {

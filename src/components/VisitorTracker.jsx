@@ -6,20 +6,32 @@ import { useLocation } from 'react-router-dom'
 const VisitorTracker = () => {
   const location = useLocation()
   const hasTrackedVisit = useRef(false)
-  const sessionKey = 'visit_tracked_session'
+  const cooldownKey = 'visit_tracked_cooldown'
+  const cooldownMinutes = 5 // Cooldown period in minutes to prevent spam
 
   useEffect(() => {
-    // Only track once per session to avoid multiple notifications
-    const sessionTracked = sessionStorage.getItem(sessionKey)
-    
-    // Check if we've already tracked this session
-    if (hasTrackedVisit.current || sessionTracked) {
+    // Check if we've already tracked this visit (prevent duplicate calls)
+    if (hasTrackedVisit.current) {
       return
+    }
+
+    // Check cooldown to prevent spam (track every visit but with cooldown)
+    const lastVisit = sessionStorage.getItem(cooldownKey)
+    if (lastVisit) {
+      const lastVisitTime = parseInt(lastVisit, 10)
+      const now = Date.now()
+      const minutesSinceLastVisit = (now - lastVisitTime) / (1000 * 60)
+      
+      // If within cooldown period, skip tracking
+      if (minutesSinceLastVisit < cooldownMinutes) {
+        console.log(`Visit tracking skipped (cooldown): ${Math.round(cooldownMinutes - minutesSinceLastVisit)} minutes remaining`)
+        return
+      }
     }
 
     // Mark that we're tracking this visit
     hasTrackedVisit.current = true
-    sessionStorage.setItem(sessionKey, 'true')
+    sessionStorage.setItem(cooldownKey, Date.now().toString())
 
     // Wait a moment to ensure page is fully loaded
     const trackVisit = async () => {
@@ -36,6 +48,8 @@ const VisitorTracker = () => {
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'Unknown',
         }
 
+        console.log('📊 Tracking visit:', visitorData.page)
+
         // Send notification to owner via API
         // This will send an email to the owner, NOT to the visitor
         const response = await fetch('/api/visit-notification', {
@@ -46,20 +60,37 @@ const VisitorTracker = () => {
           body: JSON.stringify(visitorData),
         })
 
+        const data = await response.json()
+
         if (!response.ok) {
-          console.warn('Visit notification failed:', response.status)
+          console.error('❌ Visit notification failed:', {
+            status: response.status,
+            statusText: response.statusText,
+            error: data.error || data.message,
+          })
+          
+          // Reset tracking flag if there was an error so it can retry
+          if (response.status >= 500) {
+            hasTrackedVisit.current = false
+          }
         } else {
-          const data = await response.json()
-          console.log('Visit tracked successfully:', data)
+          console.log('✅ Visit tracked successfully:', data.message || data)
+          
+          if (data.note) {
+            console.warn('⚠️', data.note)
+          }
         }
       } catch (error) {
-        // Silently fail - don't interrupt user experience
-        console.warn('Error tracking visit:', error)
+        // Log error but don't interrupt user experience
+        console.error('❌ Error tracking visit:', error.message || error)
+        
+        // Reset tracking flag on error so it can retry on next visit
+        hasTrackedVisit.current = false
       }
     }
 
-    // Delay tracking slightly to ensure page is loaded
-    const timeoutId = setTimeout(trackVisit, 2000)
+    // Delay tracking slightly to ensure page is loaded and age gate is processed
+    const timeoutId = setTimeout(trackVisit, 3000)
 
     return () => {
       clearTimeout(timeoutId)
