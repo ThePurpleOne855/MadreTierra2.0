@@ -16,7 +16,6 @@ const Footer = () => {
       title: 'Connect',
       links: [
         { href: '#contact', label: 'Contact Us' },
-        { href: '#newsletter', label: 'Newsletter' },
         { href: '#experience', label: 'Events' },
         { href: '#about', label: 'Press' },
       ],

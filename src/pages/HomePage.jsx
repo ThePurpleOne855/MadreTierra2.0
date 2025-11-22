@@ -7,7 +7,6 @@ import About from '../components/About'
 import WhereToBuy from '../components/WhereToBuy'
 import Experience from '../components/Experience'
 import Contact from '../components/Contact'
-import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
 
 const HomePage = () => {
@@ -41,7 +40,6 @@ const HomePage = () => {
       <WhereToBuy />
       <Experience />
       <Contact />
-      <Newsletter />
       <Footer />
     </div>
   )
