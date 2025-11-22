@@ -1,6 +1,9 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import AgeGate from './components/AgeGate'
+import VisitorTracker from './components/VisitorTracker'
 import HomePage from './pages/HomePage'
 import SelectionPage from './pages/SelectionPage'
 import LocationsPage from './pages/LocationsPage'
@@ -39,6 +42,7 @@ function App() {
   return (
     <BrowserRouter>
       <AgeGate />
+      <VisitorTracker />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/selection" element={<SelectionPage />} />
@@ -46,6 +50,8 @@ function App() {
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/private-events" element={<PrivateEventsPage />} />
       </Routes>
+      <Analytics />
+      <SpeedInsights />
     </BrowserRouter>
   )
 }
