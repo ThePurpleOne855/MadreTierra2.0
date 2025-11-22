@@ -156,16 +156,27 @@ export default async function handler(req, res) {
     const RESEND_API_KEY = process.env.RESEND_API_KEY
 
     console.log('🔑 Resend API Key present:', RESEND_API_KEY ? 'Yes' : 'No')
-    console.log('📧 From Email:', process.env.FROM_EMAIL || 'onboarding@resend.dev (default)')
+    
+    // Get FROM_EMAIL and log it clearly
+    const fromEmailEnv = process.env.FROM_EMAIL
+    const emailFrom = fromEmailEnv || 'onboarding@resend.dev'
+    
+    console.log('📧 FROM_EMAIL environment variable:', fromEmailEnv || 'NOT SET (using default)')
+    console.log('📧 Using FROM email:', emailFrom)
+    
+    // Check if using custom domain (not @resend.dev)
+    if (emailFrom.includes('@') && !emailFrom.endsWith('@resend.dev')) {
+      const domain = emailFrom.split('@')[1]
+      console.warn('⚠️ WARNING: Using custom domain:', domain)
+      console.warn('⚠️ This domain must be verified in Resend: https://resend.com/domains')
+      console.warn('💡 For testing, use: onboarding@resend.dev')
+    }
 
     if (RESEND_API_KEY) {
       // Using Resend (recommended)
       try {
         const { Resend } = await import('resend')
         const resend = new Resend(RESEND_API_KEY)
-        
-        // Use verified domain email or onboarding@resend.dev for testing
-        const emailFrom = process.env.FROM_EMAIL || 'onboarding@resend.dev'
         
         const result = await resend.emails.send({
           from: emailFrom,
@@ -176,6 +187,14 @@ export default async function handler(req, res) {
 
         if (result.error) {
           console.error('❌ Resend API error:', result.error)
+          
+          // Check if it's a domain verification error
+          if (result.error.message && result.error.message.includes('domain is not verified')) {
+            console.error('⚠️ Domain verification error detected!')
+            console.error('💡 Solution: Set FROM_EMAIL to onboarding@resend.dev for testing')
+            console.error('💡 Or verify your domain at https://resend.com/domains')
+          }
+          
           throw new Error(result.error.message || 'Failed to send email')
         }
 
