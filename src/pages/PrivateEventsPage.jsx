@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import SEO from '../components/SEO'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
@@ -37,6 +38,12 @@ const PrivateEventsPage = () => {
 
   return (
     <div className="min-h-screen bg-dark">
+      <SEO
+        title="Private Events & Tastings | MadreTierra Cigars"
+        description="Host an exclusive private tasting event with MadreTierra Cigars. Perfect for corporate gatherings, celebrations, or intimate gatherings. Browse our calendar and book your private event today."
+        keywords="private cigar tastings, cigar events, corporate cigar events, private cigar parties, cigar tasting events, exclusive cigar events, book private event"
+        url="/private-events"
+      />
       <Navbar />
       <section className="py-24 bg-dark min-h-screen">
         <div className="max-w-7xl mx-auto px-5">

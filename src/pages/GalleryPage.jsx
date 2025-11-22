@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import SEO from '../components/SEO'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
@@ -379,6 +380,12 @@ const GalleryPage = () => {
 
   return (
     <div className="min-h-screen bg-light">
+      <SEO
+        title="Gallery | MadreTierra Cigars"
+        description="Explore our gallery showcasing the craftsmanship and artistry of MadreTierra Cigars. View images and videos of our premium handcrafted cigars, events, and the passion behind every cigar."
+        keywords="cigar gallery, cigar photos, cigar videos, premium cigar images, cigar craftsmanship, cigar artistry, MadreTierra gallery"
+        url="/gallery"
+      />
       <Navbar />
       <section className="py-24 bg-light min-h-screen">
         <div className="max-w-7xl mx-auto px-5">

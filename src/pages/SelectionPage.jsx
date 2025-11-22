@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import SEO from '../components/SEO'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import broadleafImg from '../NewSelection/Broadleaf.jpeg'
@@ -678,6 +679,12 @@ const SelectionPage = () => {
 
   return (
     <div className="min-h-screen bg-light">
+      <SEO
+        title="Cigar Selection | MadreTierra Cigars"
+        description="Explore MadreTierra's premium cigar selection featuring 10 unique Toro blends: Connecticut, Rosado, Habano, San Andrés, Candela, Broadleaf, Cameroon, Sumatra, and Corojo. From mild to full-bodied, discover the perfect cigar for your taste."
+        keywords="cigar selection, premium cigars, Connecticut cigars, Rosado cigars, Habano cigars, San Andrés cigars, Candela cigars, Broadleaf cigars, Cameroon cigars, Sumatra cigars, Corojo cigars, mild cigars, medium cigars, full-bodied cigars, Toro cigars"
+        url="/selection"
+      />
       <Navbar />
       <section className="py-24 bg-light min-h-screen">
         <div className="max-w-7xl mx-auto px-5">

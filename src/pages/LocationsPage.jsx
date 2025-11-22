@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import SEO from '../components/SEO'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
@@ -162,6 +163,12 @@ const LocationsPage = () => {
 
   return (
     <div className="min-h-screen bg-light">
+      <SEO
+        title="Find a Retailer | MadreTierra Cigars Locations"
+        description="Find MadreTierra Cigars at authorized premium retailers and lounges near you. Visit our network of locations across multiple states to experience our handcrafted cigars."
+        keywords="cigar retailers, cigar shops, cigar lounges, find cigars near me, MadreTierra locations, authorized cigar retailers, cigar stores, premium cigar retailers"
+        url="/locations"
+      />
       <Navbar />
       <section className="py-24 bg-light min-h-screen">
         <div className="max-w-7xl mx-auto px-5">

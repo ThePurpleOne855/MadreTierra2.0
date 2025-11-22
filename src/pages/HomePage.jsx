@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import SEO from '../components/SEO'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import Featured from '../components/Featured'
@@ -31,8 +32,35 @@ const HomePage = () => {
     }
   }, [location])
 
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@type': 'Organization',
+    name: 'MadreTierra Cigars',
+    description: 'Premium handcrafted cigars made with excellence. Experience the finest selection of cigars, from Connecticut to full-bodied options.',
+    url: 'https://your-domain.vercel.app',
+    logo: 'https://your-domain.vercel.app/favicon.avif',
+    sameAs: [],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'Customer Service',
+    },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://your-domain.vercel.app/search?q={search_term_string}',
+      'query-input': 'required name=search_term_string',
+    },
+  }
+
   return (
     <div className="App">
+      <SEO
+        title="MadreTierra Cigars | Premium Handcrafted Cigars"
+        description="Discover MadreTierra Cigars - premium handcrafted cigars made with excellence. Experience the finest selection of cigars, from Connecticut to full-bodied options. Visit our authorized retailers or host a private tasting event."
+        keywords="cigars, premium cigars, handcrafted cigars, cigar selection, Connecticut cigars, full-bodied cigars, cigar retailers, cigar tastings, premium tobacco"
+        url="/"
+        structuredData={structuredData}
+      />
       <Navbar />
       <Hero />
       <Featured />
