@@ -11,7 +11,7 @@ const SEO = ({
   locale = 'en_US',
   structuredData = null,
 }) => {
-  const siteUrl = 'https://your-domain.vercel.app' // Update this with your actual domain
+  const siteUrl = 'https://www.madretierracigars.com' // Update this with your actual domain
   const fullUrl = url ? `${siteUrl}${url}` : siteUrl
   const imageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`
 
