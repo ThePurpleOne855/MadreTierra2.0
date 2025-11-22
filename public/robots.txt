@@ -3,11 +3,15 @@
 User-agent: *
 Allow: /
 
+# Disallow old/broken paths (add specific old paths here if needed)
+# Disallow: /old-page
+# Disallow: /legacy
+
 # Disallow age gate (if needed)
 # Disallow: /age-gate
 
-# Sitemap location (update with your actual domain)
-Sitemap: https://your-domain.vercel.app/sitemap.xml
+# Sitemap location
+Sitemap: https://www.madretierracigars.com/sitemap.xml
 
 # Crawl-delay (optional, in seconds)
 Crawl-delay: 1

@@ -38,8 +38,8 @@ const HomePage = () => {
     '@type': 'Organization',
     name: 'MadreTierra Cigars',
     description: 'Premium handcrafted cigars made with excellence. Experience the finest selection of cigars, from Connecticut to full-bodied options.',
-    url: 'https://your-domain.vercel.app',
-    logo: 'https://your-domain.vercel.app/favicon.avif',
+    url: 'https://www.madretierracigars.com',
+    logo: 'https://www.madretierracigars.com/favicon.avif',
     sameAs: [],
     contactPoint: {
       '@type': 'ContactPoint',
@@ -47,7 +47,7 @@ const HomePage = () => {
     },
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://your-domain.vercel.app/search?q={search_term_string}',
+      target: 'https://www.madretierracigars.com/search?q={search_term_string}',
       'query-input': 'required name=search_term_string',
     },
   }

@@ -9,6 +9,7 @@ import SelectionPage from './pages/SelectionPage'
 import LocationsPage from './pages/LocationsPage'
 import GalleryPage from './pages/GalleryPage'
 import PrivateEventsPage from './pages/PrivateEventsPage'
+import NotFoundPage from './pages/NotFoundPage'
 
 function App() {
   useEffect(() => {
@@ -49,6 +50,7 @@ function App() {
         <Route path="/locations" element={<LocationsPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/private-events" element={<PrivateEventsPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Analytics />
       <SpeedInsights />
