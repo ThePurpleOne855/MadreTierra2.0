@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage'
 import SelectionPage from './pages/SelectionPage'
 import LocationsPage from './pages/LocationsPage'
 import GalleryPage from './pages/GalleryPage'
+import PrivateEventsPage from './pages/PrivateEventsPage'
 
 function App() {
   useEffect(() => {
@@ -43,6 +44,7 @@ function App() {
         <Route path="/selection" element={<SelectionPage />} />
         <Route path="/locations" element={<LocationsPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
+        <Route path="/private-events" element={<PrivateEventsPage />} />
       </Routes>
     </BrowserRouter>
   )

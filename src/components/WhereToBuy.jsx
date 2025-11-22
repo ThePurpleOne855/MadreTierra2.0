@@ -77,7 +77,7 @@ const WhereToBuy = () => {
       title: 'Private Events',
       description: 'Experience MadreTierra at exclusive events and tastings.',
       linkText: 'Learn More',
-      linkTo: '#where-to-buy',
+      linkTo: '/private-events',
     },
   ]
 
