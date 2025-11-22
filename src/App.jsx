@@ -4,6 +4,7 @@ import AgeGate from './components/AgeGate'
 import HomePage from './pages/HomePage'
 import SelectionPage from './pages/SelectionPage'
 import LocationsPage from './pages/LocationsPage'
+import GalleryPage from './pages/GalleryPage'
 
 function App() {
   useEffect(() => {
@@ -41,6 +42,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/selection" element={<SelectionPage />} />
         <Route path="/locations" element={<LocationsPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
       </Routes>
     </BrowserRouter>
   )
