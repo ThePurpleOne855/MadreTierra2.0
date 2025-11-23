@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
-const logoImage = new URL('../logo/madre-tierra-cigarslogo.avif', import.meta.url).href
+const logoImage = new URL('../logo/Madre-Tierra-Logo.png', import.meta.url).href
 
 const AgeGate = () => {
   const location = useLocation()
@@ -114,7 +114,10 @@ const AgeGate = () => {
             <img 
               src={logoImage} 
               alt="MadreTierra Cigars" 
-              className="h-20 md:h-24 w-auto object-contain"
+              className="h-28 md:h-32 w-auto object-contain transition-all duration-300"
+              style={{
+                filter: 'drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2)) drop-shadow(0 0 18px rgba(1, 68, 33, 0.4)) drop-shadow(0 0 10px rgba(212, 175, 55, 0.3))'
+              }}
               onError={(e) => {
                 // Fallback to text if image fails to load
                 e.target.style.display = 'none'

@@ -1,4 +1,6 @@
-const logoImage = new URL('../logo/madre-tierra-cigarslogo.avif', import.meta.url).href
+const logoImage = new URL('../logo/Madre-Tierra-Logo.png', import.meta.url).href
+const veteranLogo = new URL('../logo/VeteranOwnedBusinessLogo.png', import.meta.url).href
+const dominicanFlag = new URL('../logo/DominicanFlagTransparent.png', import.meta.url).href
 
 const Footer = () => {
   const footerSections = [
@@ -38,7 +40,10 @@ const Footer = () => {
             <img 
               src={logoImage} 
               alt="MadreTierra Cigars" 
-              className="h-12 w-auto mb-4 object-contain"
+              className="h-16 md:h-20 w-auto mb-4 object-contain transition-all duration-300 hover:scale-105 hover:brightness-110"
+              style={{
+                filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 15px rgba(212, 175, 55, 0.4)) drop-shadow(0 0 8px rgba(1, 68, 33, 0.3))'
+              }}
               onError={(e) => {
                 // Fallback to text if image fails to load
                 e.target.style.display = 'none'
@@ -51,9 +56,28 @@ const Footer = () => {
               </h3>
               <span className="text-sm text-light tracking-wider">Cigars</span>
             </div>
-            <p className="text-light/70 mt-4 leading-relaxed">
+            <p className="text-light/70 mt-4 leading-relaxed mb-6">
               Handcrafted excellence in every cigar.
             </p>
+            {/* Badge Logos */}
+            <div className="flex items-center gap-4">
+              <img 
+                src={veteranLogo} 
+                alt="Veteran Owned Business" 
+                className="h-12 md:h-14 w-auto object-contain hover:scale-105 hover:brightness-125 transition-all duration-300"
+                style={{
+                  filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 10px rgba(212, 175, 55, 0.3)) brightness(1.15)'
+                }}
+              />
+              <img 
+                src={dominicanFlag} 
+                alt="Dominican Republic" 
+                className="h-12 md:h-14 w-auto object-contain hover:scale-105 hover:brightness-125 transition-all duration-300"
+                style={{
+                  filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 10px rgba(212, 175, 55, 0.3)) brightness(1.15)'
+                }}
+              />
+            </div>
           </div>
           {footerSections.map((section, index) => (
             <div key={index}>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-const logoImage = new URL('../logo/madre-tierra-cigarslogo.avif', import.meta.url).href
+const logoImage = new URL('../logo/Madre-Tierra-Logo.png', import.meta.url).href
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -165,7 +165,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           <a 
             href="/" 
-            className="logo flex items-center"
+            className="logo flex items-center group"
             onClick={(e) => {
               e.preventDefault()
               navigate('/')
@@ -175,7 +175,12 @@ const Navbar = () => {
             <img 
               src={logoImage} 
               alt="MadreTierra Cigars" 
-              className="h-10 md:h-14 w-auto object-contain max-w-[200px]"
+              className="h-14 md:h-16 lg:h-20 w-auto object-contain max-w-[280px] transition-all duration-300 group-hover:scale-105 group-hover:brightness-110"
+              style={{
+                filter: isLightBackground 
+                  ? 'drop-shadow(0 2px 4px rgba(1, 68, 33, 0.2)) drop-shadow(0 0 8px rgba(212, 175, 55, 0.15))'
+                  : 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 12px rgba(212, 175, 55, 0.3)) drop-shadow(0 0 6px rgba(1, 68, 33, 0.2))'
+              }}
               onError={(e) => {
                 // Fallback to text if image fails to load
                 e.target.style.display = 'none'
@@ -226,7 +231,7 @@ const Navbar = () => {
         <div className={`md:hidden overflow-hidden transition-all duration-300 ${
           isMenuOpen ? 'max-h-96 pb-4' : 'max-h-0'
         }`}>
-          <ul className="flex flex-col gap-4 list-none">
+          <ul className="flex flex-col gap-4 list-none mb-4">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
