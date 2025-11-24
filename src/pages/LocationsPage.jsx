@@ -4,7 +4,9 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
 // Import all location images using Vite's glob import
-const locationImages = import.meta.glob('../Locations/*.avif', { eager: true, as: 'url' })
+const locationImagesAvif = import.meta.glob('../Locations/*.avif', { eager: true, as: 'url' })
+const locationImagesJpg = import.meta.glob('../Locations/*.jpg', { eager: true, as: 'url' })
+const locationImages = { ...locationImagesAvif, ...locationImagesJpg }
 
 const LocationCard = ({ name, location, image, index }) => {
   const cardRef = useRef(null)
@@ -118,8 +120,8 @@ const LocationsPage = () => {
 
   // Parse filename to extract store name and location
   const parseLocationInfo = (filename) => {
-    // Remove .avif extension
-    const nameWithoutExt = filename.replace('.avif', '')
+    // Remove .avif or .jpg extension
+    const nameWithoutExt = filename.replace(/\.(avif|jpg)$/i, '')
     
     // Check if filename contains " - " separator
     if (nameWithoutExt.includes(' - ')) {
@@ -158,6 +160,7 @@ const LocationsPage = () => {
 
   const locationFiles = [
     'Cigar Castle 11724 N 56th st, tampa, FL 33617.avif',
+    'ECL Eiland Cigar Lounge  & Liquor - 37130 Eiland Blvd, Zephyrhills, FL 33542.jpg',
     'Ash cigar lounge - 92 NH-125, Kingston, NH 03848.avif',
     "Castro's back room - 132 Bedford center rd ste b, bedford, NH 03110.avif",
     "Castro's Back Room - 972 Elm St, manchester, NH 03101.avif",
@@ -165,6 +168,7 @@ const LocationsPage = () => {
     "Grumpy's cigars and lounge - 29 Lowell Rd Hudson, NH 03051.avif",
     'PBR miami country bar.avif',
     'Smoke rings 72 cigar & pipe - 925 N Courtenay Pkwy Merritt Island, FL 32953.avif',
+    'Stogies & Stories: Cigars, Spirits, and Friends - 3920 W 5th Ave Suite A1, Post Falls, ID 83854.jpg',
     'The Cigar Quarters - 344 E Main St, Haines City, FL 33844.avif',
     'The office cigars Lounge - 36 S Atlantic ave cocoa Beach, FL 32831.avif',
     'Tobacco shack - 162 Newburyport Turnpike, Rowley, MA 01969.avif',
