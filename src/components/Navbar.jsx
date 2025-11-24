@@ -117,6 +117,7 @@ const Navbar = () => {
     { href: '/', label: 'Home', isRoute: true },
     { href: '/selection', label: 'Cigar Selection', isRoute: true },
     { href: '/gallery', label: 'Gallery', isRoute: true },
+    { href: '/calendar', label: 'Calendar', isRoute: true },
     { href: '/#about', label: 'About', isRoute: true },
     { href: '/#where-to-buy', label: 'Where To Buy', isRoute: true },
     { href: '/#experience', label: 'Experience', isRoute: true },
