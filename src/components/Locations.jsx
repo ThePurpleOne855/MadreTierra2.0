@@ -169,8 +169,17 @@ const Locations = () => {
     'two guys smoke shop 304 S. broadway, salem, NH 03079.avif',
   ]
 
+  // Address mapping for locations that don't have addresses in filename
+  const addressMapping = {
+    'PBR miami country bar.avif': 'Dolphin Mall, 11401 NW 12th St, Miami, FL 33172'
+  }
+
   const locations = locationFiles.map((file, index) => {
     const info = parseLocationInfo(file)
+    // Add address from mapping if location is empty and mapping exists
+    if (!info.location && addressMapping[file]) {
+      info.location = capitalizeWords(addressMapping[file])
+    }
     // Get image path from glob imports
     const imagePath = locationImages[`../Locations/${file}`] || ''
     return {
