@@ -15,12 +15,12 @@ const Hero = () => {
       
       <div className="relative z-10 max-w-6xl px-5 animate-fade-in-up">
         {/* Horizontal Logo Layout */}
-        <div className="mb-6 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 lg:gap-8">
+        <div className="mb-6 flex flex-row items-center justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-8">
           {/* Left: Dominican Flag */}
           <img 
             src={dominicanFlag} 
             alt="Dominican Republic" 
-            className="h-28 md:h-40 lg:h-52 w-auto object-contain brightness-110 hover:brightness-125 hover:scale-105 transition-all duration-300 animate-fade-in-up"
+            className="h-20 sm:h-28 md:h-40 lg:h-52 w-auto object-contain brightness-110 hover:brightness-125 hover:scale-105 transition-all duration-300 animate-fade-in-up"
             style={{
               animationDelay: '0.2s',
               filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 12px rgba(212, 175, 55, 0.3))',
@@ -32,7 +32,7 @@ const Hero = () => {
           <img 
             src={logoImage} 
             alt="MadreTierra Cigars" 
-            className="h-32 md:h-44 lg:h-56 w-auto object-contain max-w-[90%] transition-all duration-500 hover:scale-105"
+            className="h-24 sm:h-32 md:h-44 lg:h-56 w-auto object-contain max-w-[90%] transition-all duration-500 hover:scale-105"
             style={{
               filter: 'drop-shadow(0 20px 25px rgba(0, 0, 0, 0.4)) drop-shadow(0 10px 10px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 25px rgba(212, 175, 55, 0.5)) drop-shadow(0 0 12px rgba(1, 68, 33, 0.4))',
               animation: 'fadeInScale 1s ease-out'
@@ -51,7 +51,7 @@ const Hero = () => {
           <img 
             src={veteranLogo} 
             alt="Veteran Owned Business" 
-            className="h-28 md:h-40 lg:h-52 w-auto object-contain brightness-110 hover:brightness-125 hover:scale-105 transition-all duration-300 animate-fade-in-up"
+            className="h-20 sm:h-28 md:h-40 lg:h-52 w-auto object-contain brightness-110 hover:brightness-125 hover:scale-105 transition-all duration-300 animate-fade-in-up"
             style={{
               animationDelay: '0.2s',
               filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 12px rgba(212, 175, 55, 0.3))',
