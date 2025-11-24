@@ -255,123 +255,6 @@ const CigarCard = ({ name, image, strength, size, onClick }) => {
 const SelectionPage = () => {
   const cigars = [
     {
-      name: 'Broadleaf Toro',
-      image: broadleafImg,
-      size: '6x52',
-      strength: 'Full',
-      evaluation: {
-        appearance: [
-          'Rich, dark chocolate brown wrapper with oily sheen',
-          'Smooth, even texture with minimal veins',
-          'Premium quality wrapper with consistent color throughout'
-        ],
-        construction: [
-          'Firm, well-packed with no soft spots',
-          'Even roll with consistent density',
-          'Properly applied triple cap'
-        ],
-        draw: [
-          'Excellent draw with perfect resistance',
-          'Even burn line throughout',
-          'No touch-ups required'
-        ],
-        flavorAroma: [
-          'Rich notes of dark chocolate and espresso',
-          'Hints of black pepper and leather',
-          'Complex flavor profile that evolves beautifully',
-          'Aromatic cedar and earth notes'
-        ],
-        smokingExperience: [
-          'Consistent strength from start to finish',
-          'Full-bodied with rich, bold character',
-          'Smooth, long finish with lingering complexity'
-        ],
-        ashOverall: [
-          'Firm, white ash that holds well',
-          'Excellent overall balance and construction',
-          'Premium quality throughout the entire smoke'
-        ]
-      }
-    },
-    {
-      name: 'Cameroon Toro',
-      image: cameroonImg,
-      size: '6x52',
-      strength: 'Mild-Medium',
-      evaluation: {
-        appearance: [
-          'Light brown wrapper with golden highlights',
-          'Smooth, silky texture',
-          'Elegant appearance with fine veins'
-        ],
-        construction: [
-          'Firm construction with consistent pack',
-          'Even roll throughout',
-          'Well-crafted cap'
-        ],
-        draw: [
-          'Smooth, effortless draw',
-          'Even burn with minimal corrections',
-          'Consistent burn rate'
-        ],
-        flavorAroma: [
-          'Delicate notes of cedar and cream',
-          'Subtle spice with hints of nutmeg',
-          'Sweet, creamy finish',
-          'Aromatic with pleasant, mild scent'
-        ],
-        smokingExperience: [
-          'Balanced mild-medium strength',
-          'Smooth, approachable body',
-          'Clean, pleasant finish'
-        ],
-        ashOverall: [
-          'Light gray, firm ash',
-          'Well-balanced overall experience',
-          'Quality construction throughout'
-        ]
-      }
-    },
-    {
-      name: 'Candela Toro',
-      image: candelaImg,
-      size: '6x52',
-      strength: 'Mild',
-      evaluation: {
-        appearance: [
-          'Unique bright green wrapper',
-          'Smooth, glossy texture',
-          'Distinctive appearance with vibrant color'
-        ],
-        construction: [
-          'Firm, well-constructed',
-          'Even roll with proper density',
-          'Clean cap application'
-        ],
-        draw: [
-          'Easy, open draw',
-          'Even burn line',
-          'Consistent smoking experience'
-        ],
-        flavorAroma: [
-          'Grassy, herbal notes',
-          'Light, fresh flavor profile',
-          'Subtle sweetness',
-          'Clean, mild aroma'
-        ],
-        smokingExperience: [
-          'Very mild strength',
-          'Light, refreshing body',
-          'Smooth, clean finish'
-        ],
-        ashOverall: [
-          'Light, firm ash',
-          'Unique and enjoyable overall experience',
-          'Well-crafted mild cigar'
-        ]
-      }
-    },
-    {
       name: 'Connecticut Toro',
       image: connecticutImg,
       size: '6x52',
@@ -407,123 +290,6 @@ const SelectionPage = () => {
           'Light, firm ash',
           'Excellent balance for mild cigar',
           'Quality construction throughout'
-        ]
-      }
-    },
-    {
-      name: 'Corojo Toro',
-      image: corojoImg,
-      size: '6x52',
-      strength: 'Full',
-      evaluation: {
-        appearance: [
-          'Dark, rich brown wrapper',
-          'Oily, toothy texture',
-          'Premium appearance with character'
-        ],
-        construction: [
-          'Very firm, densely packed',
-          'Excellent roll quality',
-          'Perfect cap application'
-        ],
-        draw: [
-          'Full-bodied draw with good resistance',
-          'Even burn throughout',
-          'Consistent smoking experience'
-        ],
-        flavorAroma: [
-          'Bold notes of black pepper and spice',
-          'Rich earth and leather',
-          'Complex, evolving flavors',
-          'Strong, aromatic presence'
-        ],
-        smokingExperience: [
-          'Full strength from beginning to end',
-          'Rich, full-bodied character',
-          'Long, complex finish'
-        ],
-        ashOverall: [
-          'Dense, firm ash',
-          'Excellent overall quality',
-          'Premium full-bodied experience'
-        ]
-      }
-    },
-    {
-      name: 'Habano Toro',
-      image: habanoImg,
-      size: '6x52',
-      strength: 'Medium',
-      evaluation: {
-        appearance: [
-          'Medium brown wrapper with reddish tint',
-          'Smooth texture with slight tooth',
-          'Attractive, balanced appearance'
-        ],
-        construction: [
-          'Firm, well-constructed',
-          'Even roll with good density',
-          'Professional cap work'
-        ],
-        draw: [
-          'Ideal draw resistance',
-          'Even burn line',
-          'Consistent throughout'
-        ],
-        flavorAroma: [
-          'Spicy notes with cedar and coffee',
-          'Balanced sweetness',
-          'Medium complexity',
-          'Aromatic with pleasant spice'
-        ],
-        smokingExperience: [
-          'Medium strength, well-balanced',
-          'Smooth, medium body',
-          'Satisfying finish'
-        ],
-        ashOverall: [
-          'Firm, gray-white ash',
-          'Well-balanced overall experience',
-          'Quality medium-bodied cigar'
-        ]
-      }
-    },
-    {
-      name: 'La Fuma Ricardo',
-      image: laFumaRicardoImg,
-      size: '6x50',
-      strength: 'Mild-Medium',
-      evaluation: {
-        appearance: [
-          'Medium brown wrapper',
-          'Smooth texture',
-          'Clean, consistent appearance'
-        ],
-        construction: [
-          'Good construction for value',
-          'Even roll',
-          'Proper cap'
-        ],
-        draw: [
-          'Easy draw',
-          'Even burn',
-          'Consistent smoking'
-        ],
-        flavorAroma: [
-          'Mild, approachable flavors',
-          'Notes of wood and light spice',
-          'Balanced profile',
-          'Pleasant, mild aroma'
-        ],
-        smokingExperience: [
-          'Mild-medium strength',
-          'Smooth, approachable body',
-          'Clean finish'
-        ],
-        ashOverall: [
-          'Good ash retention',
-          'Solid value proposition',
-          'Well-made budget option'
         ]
       }
     },
@@ -567,41 +333,119 @@ const SelectionPage = () => {
       }
     },
     {
-      name: 'San Andres Toro',
-      image: sanAndresImg,
+      name: 'Candela Toro',
+      image: candelaImg,
       size: '6x52',
-      strength: 'Full',
+      strength: 'Mild',
       evaluation: {
         appearance: [
-          'Dark, almost black wrapper',
-          'Oily, rich texture',
-          'Striking, bold appearance'
+          'Unique bright green wrapper',
+          'Smooth, glossy texture',
+          'Distinctive appearance with vibrant color'
         ],
         construction: [
-          'Very firm, densely packed',
-          'Excellent roll quality',
-          'Perfect construction'
+          'Firm, well-constructed',
+          'Even roll with proper density',
+          'Clean cap application'
         ],
         draw: [
-          'Full-bodied draw',
-          'Even, steady burn',
+          'Easy, open draw',
+          'Even burn line',
+          'Consistent smoking experience'
+        ],
+        flavorAroma: [
+          'Grassy, herbal notes',
+          'Light, fresh flavor profile',
+          'Subtle sweetness',
+          'Clean, mild aroma'
+        ],
+        smokingExperience: [
+          'Very mild strength',
+          'Light, refreshing body',
+          'Smooth, clean finish'
+        ],
+        ashOverall: [
+          'Light, firm ash',
+          'Unique and enjoyable overall experience',
+          'Well-crafted mild cigar'
+        ]
+      }
+    },
+    {
+      name: 'Cameroon Toro',
+      image: cameroonImg,
+      size: '6x52',
+      strength: 'Mild-Medium',
+      evaluation: {
+        appearance: [
+          'Light brown wrapper with golden highlights',
+          'Smooth, silky texture',
+          'Elegant appearance with fine veins'
+        ],
+        construction: [
+          'Firm construction with consistent pack',
+          'Even roll throughout',
+          'Well-crafted cap'
+        ],
+        draw: [
+          'Smooth, effortless draw',
+          'Even burn with minimal corrections',
+          'Consistent burn rate'
+        ],
+        flavorAroma: [
+          'Delicate notes of cedar and cream',
+          'Subtle spice with hints of nutmeg',
+          'Sweet, creamy finish',
+          'Aromatic with pleasant, mild scent'
+        ],
+        smokingExperience: [
+          'Balanced mild-medium strength',
+          'Smooth, approachable body',
+          'Clean, pleasant finish'
+        ],
+        ashOverall: [
+          'Light gray, firm ash',
+          'Well-balanced overall experience',
+          'Quality construction throughout'
+        ]
+      }
+    },
+    {
+      name: 'Habano Toro',
+      image: habanoImg,
+      size: '6x52',
+      strength: 'Medium-Full',
+      evaluation: {
+        appearance: [
+          'Medium brown wrapper with reddish tint',
+          'Smooth texture with slight tooth',
+          'Attractive, balanced appearance'
+        ],
+        construction: [
+          'Firm, well-constructed',
+          'Even roll with good density',
+          'Professional cap work'
+        ],
+        draw: [
+          'Ideal draw resistance',
+          'Even burn line',
           'Consistent throughout'
         ],
         flavorAroma: [
-          'Bold notes of dark chocolate and espresso',
-          'Rich earth and spice',
-          'Intense, complex flavors',
-          'Strong, aromatic presence'
+          'Spicy notes with cedar and coffee',
+          'Balanced sweetness',
+          'Medium complexity',
+          'Aromatic with pleasant spice'
         ],
         smokingExperience: [
-          'Full strength throughout',
-          'Rich, bold body',
-          'Long, intense finish'
+          'Medium-full strength, well-balanced',
+          'Smooth, medium-full body',
+          'Satisfying finish'
         ],
         ashOverall: [
-          'Dense, firm ash',
-          'Excellent overall quality',
-          'Premium full-bodied experience'
+          'Firm, gray-white ash',
+          'Well-balanced overall experience',
+          'Quality medium-full-bodied cigar'
         ]
       }
     },
@@ -641,6 +485,162 @@ const SelectionPage = () => {
           'Firm, dense ash',
           'Excellent overall balance',
           'Quality medium-full experience'
+        ]
+      }
+    },
+    {
+      name: 'Broadleaf Toro',
+      image: broadleafImg,
+      size: '6x52',
+      strength: 'Full',
+      evaluation: {
+        appearance: [
+          'Rich, dark chocolate brown wrapper with oily sheen',
+          'Smooth, even texture with minimal veins',
+          'Premium quality wrapper with consistent color throughout'
+        ],
+        construction: [
+          'Firm, well-packed with no soft spots',
+          'Even roll with consistent density',
+          'Properly applied triple cap'
+        ],
+        draw: [
+          'Excellent draw with perfect resistance',
+          'Even burn line throughout',
+          'No touch-ups required'
+        ],
+        flavorAroma: [
+          'Rich notes of dark chocolate and espresso',
+          'Hints of black pepper and leather',
+          'Complex flavor profile that evolves beautifully',
+          'Aromatic cedar and earth notes'
+        ],
+        smokingExperience: [
+          'Consistent strength from start to finish',
+          'Full-bodied with rich, bold character',
+          'Smooth, long finish with lingering complexity'
+        ],
+        ashOverall: [
+          'Firm, white ash that holds well',
+          'Excellent overall balance and construction',
+          'Premium quality throughout the entire smoke'
+        ]
+      }
+    },
+    {
+      name: 'San Andres Toro',
+      image: sanAndresImg,
+      size: '6x52',
+      strength: 'Full',
+      evaluation: {
+        appearance: [
+          'Dark, almost black wrapper',
+          'Oily, rich texture',
+          'Striking, bold appearance'
+        ],
+        construction: [
+          'Very firm, densely packed',
+          'Excellent roll quality',
+          'Perfect construction'
+        ],
+        draw: [
+          'Full-bodied draw',
+          'Even, steady burn',
+          'Consistent throughout'
+        ],
+        flavorAroma: [
+          'Bold notes of dark chocolate and espresso',
+          'Rich earth and spice',
+          'Intense, complex flavors',
+          'Strong, aromatic presence'
+        ],
+        smokingExperience: [
+          'Full strength throughout',
+          'Rich, bold body',
+          'Long, intense finish'
+        ],
+        ashOverall: [
+          'Dense, firm ash',
+          'Excellent overall quality',
+          'Premium full-bodied experience'
+        ]
+      }
+    },
+    {
+      name: 'Corojo Toro',
+      image: corojoImg,
+      size: '6x52',
+      strength: 'Full',
+      evaluation: {
+        appearance: [
+          'Dark, rich brown wrapper',
+          'Oily, toothy texture',
+          'Premium appearance with character'
+        ],
+        construction: [
+          'Very firm, densely packed',
+          'Excellent roll quality',
+          'Perfect cap application'
+        ],
+        draw: [
+          'Full-bodied draw with good resistance',
+          'Even burn throughout',
+          'Consistent smoking experience'
+        ],
+        flavorAroma: [
+          'Bold notes of black pepper and spice',
+          'Rich earth and leather',
+          'Complex, evolving flavors',
+          'Strong, aromatic presence'
+        ],
+        smokingExperience: [
+          'Full strength from beginning to end',
+          'Rich, full-bodied character',
+          'Long, complex finish'
+        ],
+        ashOverall: [
+          'Dense, firm ash',
+          'Excellent overall quality',
+          'Premium full-bodied experience'
+        ]
+      }
+    },
+    {
+      name: 'La Fuma Ricardo',
+      image: laFumaRicardoImg,
+      size: '6x50',
+      strength: 'Mild-Medium',
+      evaluation: {
+        appearance: [
+          'Medium brown wrapper',
+          'Smooth texture',
+          'Clean, consistent appearance'
+        ],
+        construction: [
+          'Good construction for value',
+          'Even roll',
+          'Proper cap'
+        ],
+        draw: [
+          'Easy draw',
+          'Even burn',
+          'Consistent smoking'
+        ],
+        flavorAroma: [
+          'Mild, approachable flavors',
+          'Notes of wood and light spice',
+          'Balanced profile',
+          'Pleasant, mild aroma'
+        ],
+        smokingExperience: [
+          'Mild-medium strength',
+          'Smooth, approachable body',
+          'Clean finish'
+        ],
+        ashOverall: [
+          'Good ash retention',
+          'Solid value proposition',
+          'Well-made budget option'
         ]
       }
     },
@@ -686,15 +686,15 @@ const SelectionPage = () => {
         url="/selection"
       />
       <Navbar />
-      <section className="py-24 bg-light min-h-screen">
+      <section className="pt-40 pb-24 bg-light min-h-screen">
         <div className="max-w-7xl mx-auto px-5">
           {/* Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 mt-8">
             <h1 className="text-5xl md:text-6xl font-serif font-bold text-primary mb-4">
               Our Selection
             </h1>
             <p className="text-xl text-dark/70 max-w-2xl mx-auto leading-relaxed mb-4">
-              Madre Tierra currently produces 10 unique Toro (6x52) blends: Connecticut, Rosado, Habano, San Andrés, Candela, La Fuma, Pennsylvania Broadleaf, Cameroon, Sumatra, and Corojo.
+              Madre Tierra currently produces 9 unique Toro (6x52) premium blends: Connecticut, Rosado, Habano, San Andrés, Candela, Pennsylvania Broadleaf, Cameroon, Sumatra, and Corojo. And the La Fuma (6x50) medium cut cigar.
             </p>
             <p className="text-lg text-dark/60 max-w-2xl mx-auto leading-relaxed">
               Each cigar offers a distinct and memorable flavor profile, yet remains more approachable than many other cigars from the region, making it enjoyable for both seasoned aficionados and newcomers alike.

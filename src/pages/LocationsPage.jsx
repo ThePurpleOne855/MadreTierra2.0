@@ -80,6 +80,42 @@ const LocationCard = ({ name, location, image, index }) => {
 }
 
 const LocationsPage = () => {
+  // Capitalize first letter of each word
+  const capitalizeWords = (str) => {
+    if (!str) return str
+    return str
+      .split(' ')
+      .map(word => {
+        // Remove commas and other punctuation for processing
+        const hasComma = word.endsWith(',')
+        const cleanWord = word.replace(/[,.]/g, '')
+        
+        // Handle special cases like "N", "S", "E", "W" for directions
+        if (cleanWord.length === 1 && /^[NSEW]$/i.test(cleanWord)) {
+          return cleanWord.toUpperCase() + (hasComma ? ',' : '')
+        }
+        // Handle state abbreviations like "NH", "FL", "AL", "MA", "IN" (2 letters, usually before zip)
+        if (cleanWord.length === 2 && /^[A-Z]{2}$/i.test(cleanWord)) {
+          return cleanWord.toUpperCase() + (hasComma ? ',' : '')
+        }
+        // Handle words with apostrophes (e.g., "Castro's")
+        if (cleanWord.includes("'")) {
+          const parts = cleanWord.split("'")
+          const result = parts[0].charAt(0).toUpperCase() + parts[0].slice(1).toLowerCase() + 
+                 "'" + (parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1).toLowerCase() : '')
+          return result + (hasComma ? ',' : '')
+        }
+        // Handle abbreviations like "Rd", "St", "Ave", "Pkwy", "Ste", "Blvd"
+        const abbreviations = ['rd', 'st', 'ave', 'pkwy', 'ste', 'blvd', 'ct', 'dr', 'ln', 'pl', 'way']
+        if (abbreviations.includes(cleanWord.toLowerCase())) {
+          return cleanWord.charAt(0).toUpperCase() + cleanWord.slice(1).toLowerCase() + (hasComma ? ',' : '')
+        }
+        // Regular word capitalization
+        return cleanWord.charAt(0).toUpperCase() + cleanWord.slice(1).toLowerCase() + (hasComma ? ',' : '')
+      })
+      .join(' ')
+  }
+
   // Parse filename to extract store name and location
   const parseLocationInfo = (filename) => {
     // Remove .avif extension
@@ -89,8 +125,8 @@ const LocationsPage = () => {
     if (nameWithoutExt.includes(' - ')) {
       const parts = nameWithoutExt.split(' - ')
       return {
-        name: parts[0].trim(),
-        location: parts[1].trim()
+        name: capitalizeWords(parts[0].trim()),
+        location: capitalizeWords(parts[1].trim())
       }
     }
     
@@ -99,29 +135,34 @@ const LocationsPage = () => {
       // It's an address without a store name
       return {
         name: 'Retail Location',
-        location: nameWithoutExt.trim()
+        location: capitalizeWords(nameWithoutExt.trim())
+      }
+    }
+    
+    // Check if it starts with a store name (like "Cigar Castle 11724...")
+    // Try to split at the first number
+    const match = nameWithoutExt.match(/^(.+?)\s+(\d.+)$/)
+    if (match) {
+      return {
+        name: capitalizeWords(match[1].trim()),
+        location: capitalizeWords(match[2].trim())
       }
     }
     
     // Default: use entire filename as location
     return {
-      name: nameWithoutExt.trim(),
+      name: capitalizeWords(nameWithoutExt.trim()),
       location: ''
     }
   }
 
   const locationFiles = [
-    '11724 N 56th st, tampa, FL 33617.avif',
-    '15 spit brook rd, nashua, NH 03060.avif',
-    '317 S Washington Ave Titusville, FL 32796.avif',
+    'Cigar Castle 11724 N 56th st, tampa, FL 33617.avif',
     'Ash cigar lounge - 92 NH-125, Kingston, NH 03848.avif',
     "Castro's back room - 132 Bedford center rd ste b, bedford, NH 03110.avif",
     "Castro's Back Room - 972 Elm St, manchester, NH 03101.avif",
-    'CigarBox - 5636 Hansel Ave, Pine Castle, FL 32809.avif',
     'F & M cigars - 503 14th st, phenix city, AL 36867.avif',
-    'george & dragon english taver - 502 Brevard Ave Cocoa, FL 32922 United States.avif',
     "Grumpy's cigars and lounge - 29 Lowell Rd Hudson, NH 03051.avif",
-    "Nicky Blaine's cocktail - 20 N meridian st, indianapolis, IN 46204.avif",
     'PBR miami country bar.avif',
     'Smoke rings 72 cigar & pipe - 925 N Courtenay Pkwy Merritt Island, FL 32953.avif',
     'The Cigar Quarters - 344 E Main St, Haines City, FL 33844.avif',
