@@ -10,7 +10,7 @@ const About = () => {
               Our Story
             </h2>
             <p className="text-lg text-dark mb-6 leading-relaxed">
-              Madre Tierra is a family-owned and operated brand of fine cigars, all handmade in Tamboril, Dominican Republic. Blending cigars since 1982, we have dedicated decades to perfecting our craft and creating exceptional smoking experiences.
+              Madre Tierra is a family-owned and operated brand of fine cigars, all handmade in Tamboril, Dominican Republic. Blending cigars since 1983, we have dedicated decades to perfecting our craft and creating exceptional smoking experiences.
             </p>
             <p className="text-lg text-dark mb-6 leading-relaxed">
               Our expertly blended cigars combine the finest tobaccos from Ecuador and the Dominican Republic, and we proudly manage the entire process from seed to smoke. This complete control over every step ensures the highest quality and consistency in every cigar we produce.

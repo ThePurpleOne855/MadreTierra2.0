@@ -100,6 +100,11 @@ const LocationsPage = () => {
         if (cleanWord.length === 2 && /^[A-Z]{2}$/i.test(cleanWord)) {
           return cleanWord.toUpperCase() + (hasComma ? ',' : '')
         }
+        // Handle specific uppercase abbreviations like "ECL"
+        const uppercaseAbbreviations = ['ecl', 'pbr']
+        if (uppercaseAbbreviations.includes(cleanWord.toLowerCase())) {
+          return cleanWord.toUpperCase() + (hasComma ? ',' : '')
+        }
         // Handle words with apostrophes (e.g., "Castro's")
         if (cleanWord.includes("'")) {
           const parts = cleanWord.split("'")
