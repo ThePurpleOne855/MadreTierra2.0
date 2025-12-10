@@ -7,12 +7,28 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [isLightBackground, setIsLightBackground] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
   const location = useLocation()
   const navigate = useNavigate()
 
   useEffect(() => {
     const detectBackgroundColor = () => {
-      setScrolled(window.scrollY > 100)
+      const currentScrollY = window.scrollY
+      
+      // Show navbar when at top, hide when scrolling down, show when scrolling up
+      if (currentScrollY < 100) {
+        setIsVisible(true)
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down & past threshold
+        setIsVisible(false)
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up
+        setIsVisible(true)
+      }
+      
+      setLastScrollY(currentScrollY)
+      setScrolled(currentScrollY > 100)
       
       // Detect which section is behind the navbar
       const navbarHeight = 80
@@ -161,7 +177,7 @@ const Navbar = () => {
     : 'bg-secondary'
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${navBgClass}`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${navBgClass} ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="max-w-7xl mx-auto px-5">
         <div className="flex justify-between items-center py-4">
           <a 

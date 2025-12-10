@@ -151,7 +151,7 @@ const CigarLightbox = ({ cigar, isOpen, onClose }) => {
   )
 }
 
-const CigarCard = ({ name, image, strength, size, onClick }) => {
+const CigarCard = ({ name, image, strength, size, wrapper, binder, filler, onClick }) => {
   const cardRef = useRef(null)
   const [isVisible, setIsVisible] = useState(false)
 
@@ -229,10 +229,27 @@ const CigarCard = ({ name, image, strength, size, onClick }) => {
 
       {/* Content */}
       <div className="p-6">
-        <h3 className="text-2xl font-serif font-bold text-primary mb-2 group-hover:text-secondary transition-colors duration-300">
+        <h3 className="text-2xl font-serif font-bold text-primary mb-3 group-hover:text-secondary transition-colors duration-300">
           {name}
         </h3>
-        <div className="flex items-center justify-between mt-4">
+        
+        {/* Wrapper, Binder, Filler Info */}
+        <div className="space-y-1 text-sm">
+          <div className="flex items-center gap-2">
+            <span className="text-dark/60 font-medium">Wrapper:</span>
+            <span className="text-dark font-semibold">{wrapper}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-dark/60 font-medium">Binder:</span>
+            <span className="text-dark font-semibold">{binder}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-dark/60 font-medium">Filler:</span>
+            <span className="text-dark font-semibold">{filler}</span>
+          </div>
+        </div>
+        
+        <div className="flex items-center justify-between mt-4 pt-3 border-t border-dark/10">
           <div className="flex items-center gap-2">
             <span className="text-dark/70 text-sm">Size:</span>
             <span className="text-dark font-semibold">{size}</span>
@@ -259,6 +276,9 @@ const SelectionPage = () => {
       image: connecticutImg,
       size: '6x52',
       strength: 'Mild',
+      wrapper: 'Connecticut',
+      binder: 'Ecuador',
+      filler: 'Dominican',
       evaluation: {
         appearance: [
           'Light golden brown wrapper',
@@ -298,6 +318,9 @@ const SelectionPage = () => {
       image: rosadoImg,
       size: '6x52',
       strength: 'Mild',
+      wrapper: 'Ecuador',
+      binder: 'Dominican',
+      filler: 'Dominican',
       evaluation: {
         appearance: [
           'Rosado wrapper with reddish-brown hue',
@@ -337,6 +360,9 @@ const SelectionPage = () => {
       image: candelaImg,
       size: '6x52',
       strength: 'Mild',
+      wrapper: 'Dominican',
+      binder: 'Dominican',
+      filler: 'Dominican',
       evaluation: {
         appearance: [
           'Unique bright green wrapper',
@@ -376,6 +402,9 @@ const SelectionPage = () => {
       image: cameroonImg,
       size: '6x52',
       strength: 'Mild-Medium',
+      wrapper: 'Cameroon',
+      binder: 'Ecuador',
+      filler: 'Dominican',
       evaluation: {
         appearance: [
           'Light brown wrapper with golden highlights',
@@ -415,6 +444,9 @@ const SelectionPage = () => {
       image: habanoImg,
       size: '6x52',
       strength: 'Medium-Full',
+      wrapper: 'Ecuador',
+      binder: 'Cubano',
+      filler: 'Dominican',
       evaluation: {
         appearance: [
           'Medium brown wrapper with reddish tint',
@@ -454,6 +486,9 @@ const SelectionPage = () => {
       image: sumatraImg,
       size: '6x52',
       strength: 'Medium-Full',
+      wrapper: 'Ecuador',
+      binder: 'Dominican',
+      filler: 'Dominican',
       evaluation: {
         appearance: [
           'Dark brown wrapper with slight oil',
@@ -493,6 +528,9 @@ const SelectionPage = () => {
       image: broadleafImg,
       size: '6x52',
       strength: 'Full',
+      wrapper: 'Pennsylvania',
+      binder: 'Dominican',
+      filler: 'Dominican',
       evaluation: {
         appearance: [
           'Rich, dark chocolate brown wrapper with oily sheen',
@@ -532,6 +570,9 @@ const SelectionPage = () => {
       image: sanAndresImg,
       size: '6x52',
       strength: 'Full',
+      wrapper: 'Mexican',
+      binder: 'Dominican',
+      filler: 'Dominican',
       evaluation: {
         appearance: [
           'Dark, almost black wrapper',
@@ -571,6 +612,9 @@ const SelectionPage = () => {
       image: corojoImg,
       size: '6x52',
       strength: 'Full',
+      wrapper: 'Ecuador',
+      binder: 'Dominican',
+      filler: 'Dominican',
       evaluation: {
         appearance: [
           'Dark, rich brown wrapper',
@@ -610,6 +654,9 @@ const SelectionPage = () => {
       image: laFumaRicardoImg,
       size: '6x50',
       strength: 'Mild-Medium',
+      wrapper: 'Ecuador',
+      binder: 'Dominican',
+      filler: 'Proprietary',
       evaluation: {
         appearance: [
           'Medium brown wrapper',
@@ -727,6 +774,9 @@ const SelectionPage = () => {
                 image={cigar.image}
                 size={cigar.size}
                 strength={cigar.strength}
+                wrapper={cigar.wrapper}
+                binder={cigar.binder}
+                filler={cigar.filler}
                 onClick={() => handleCigarClick(cigar)}
               />
             ))}

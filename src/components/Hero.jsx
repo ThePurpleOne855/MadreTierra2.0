@@ -1,17 +1,19 @@
 import logoImage from '../logo/Madre-Tierra-Logo.png'
 import veteranLogo from '../logo/VeteranOwnedBusinessLogo.png'
 import dominicanFlag from '../logo/DominicanFlagTransparent.png'
+import backgroundImage from '../Background/background2.png'
 
 const Hero = () => {
   return (
-    <section id="home" className="relative h-screen flex items-center justify-center text-center overflow-hidden bg-gradient-to-br from-primary to-dark">
-      {/* Pattern Overlay */}
-      <div className="absolute inset-0 opacity-30" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 100 0 L 0 0 0 100' fill='none' stroke='rgba(212,175,55,0.05)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23grid)'/%3E%3C/svg%3E")`
-      }}></div>
+    <section id="home" className="relative h-screen flex items-center justify-center text-center overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      ></div>
       
-      {/* Radial Overlay */}
-      <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-dark/70"></div>
+      {/* Dark Overlay for readability */}
+      <div className="absolute inset-0 bg-dark/60"></div>
       
       <div className="relative z-10 max-w-6xl px-5 animate-fade-in-up">
         {/* Horizontal Logo Layout */}
@@ -60,7 +62,7 @@ const Hero = () => {
           />
         </div>
         
-        <p className="text-xl md:text-2xl text-secondary mb-10 font-light tracking-wide">
+        <p className="text-xl md:text-2xl text-secondary mb-10 font-bold tracking-wide">
           The Best Cigars You Have Never Smoked!
         </p>
         <a
