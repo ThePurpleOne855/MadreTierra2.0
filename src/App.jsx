@@ -9,6 +9,7 @@ import SelectionPage from './pages/SelectionPage'
 import LocationsPage from './pages/LocationsPage'
 import GalleryPage from './pages/GalleryPage'
 import PrivateEventsPage from './pages/PrivateEventsPage'
+import EndorsementsPage from './pages/EndorsementsPage'
 import NotFoundPage from './pages/NotFoundPage'
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
         <Route path="/locations" element={<LocationsPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/private-events" element={<PrivateEventsPage />} />
+        <Route path="/endorsements" element={<EndorsementsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Analytics />

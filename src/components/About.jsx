@@ -16,7 +16,7 @@ const About = () => {
               Our expertly blended cigars combine the finest tobaccos from Ecuador and the Dominican Republic, and we proudly manage the entire process from seed to smoke. This complete control over every step ensures the highest quality and consistency in every cigar we produce.
             </p>
             <p className="text-xl text-dark leading-relaxed">
-              Recently introduced to the U.S. market by owners Juanna De La Cruz, John Deans, and Jacob Senior, Madre Tierra made its first major debut during a "Cut-n-Light" event at Smoke Rings-72, a premier cigar lounge located in Merritt Island, FL. We are excited to share our passion and craftsmanship with cigar enthusiasts across America.
+              Recently introduced to the U.S. market by owners Juana De La Cruz, John Deans, and Jacob Senior, Madre Tierra made its first major debut during a "Cut-n-Light" event at Smoke Rings-72, a premier cigar lounge located in Merritt Island, FL. We are excited to share our passion and craftsmanship with cigar enthusiasts across America.
             </p>
           </div>
           <div className="rounded shadow-2xl overflow-hidden bg-dark">

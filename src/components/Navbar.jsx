@@ -136,7 +136,7 @@ const Navbar = () => {
     { href: '/private-events', label: 'Calendar', isRoute: true },
     { href: '/#about', label: 'About', isRoute: true },
     { href: '/#where-to-buy', label: 'Where To Buy', isRoute: true },
-    { href: '/#experience', label: 'Experience', isRoute: true },
+    { href: '/endorsements', label: 'Endorsements', isRoute: true },
     { href: '/#contact', label: 'Contact Us', isRoute: true },
   ]
 
