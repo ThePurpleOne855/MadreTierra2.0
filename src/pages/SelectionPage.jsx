@@ -445,7 +445,7 @@ const SelectionPage = () => {
       size: '6x52',
       strength: 'Medium-Full',
       wrapper: 'Ecuador',
-      binder: 'Cubano',
+      binder: 'Dominican',
       filler: 'Dominican',
       evaluation: {
         appearance: [
