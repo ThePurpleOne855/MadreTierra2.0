@@ -40,7 +40,17 @@ Object.keys(galleryVideosGlob).forEach((path) => {
   })
 })
 
+// Newly added photos, pinned to the front of the gallery in this order.
+const pinnedOrder = ['Owner Pic', 'Collection 1', 'Collection 2', 'Collection 3', 'Collection 4']
+
 items.sort((a, b) => {
+  const pinnedA = pinnedOrder.indexOf(a.name)
+  const pinnedB = pinnedOrder.indexOf(b.name)
+  if (pinnedA !== -1 || pinnedB !== -1) {
+    if (pinnedA === -1) return 1
+    if (pinnedB === -1) return -1
+    return pinnedA - pinnedB
+  }
   const numA = parseInt(a.name.match(/\d+/)?.[0] || '0')
   const numB = parseInt(b.name.match(/\d+/)?.[0] || '0')
   return numA - numB
