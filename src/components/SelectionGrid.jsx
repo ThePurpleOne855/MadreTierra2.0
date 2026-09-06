@@ -9,6 +9,9 @@ import laFumaRicardoImgMeta from '../NewSelection/La-Fuma-Ricardo.jpeg'
 import rosadoImgMeta from '../NewSelection/Rosado.jpeg'
 import sanAndresImgMeta from '../NewSelection/San Andres.jpeg'
 import sumatraImgMeta from '../NewSelection/Sumatra.jpeg'
+import puraLuzConnecticutImgMeta from '../MadreTierraSelection/Pura Luz 107 Behike 6.5x56 Connecticut .png'
+import puraLuzHabanoImgMeta from '../MadreTierraSelection/Pura Luz 107 6.5x56 Habano.jpeg'
+import puraLuzSanAndresImgMeta from '../MadreTierraSelection/Pura Luz 107 6.5x56 San Andres.jpeg'
 
 const broadleafImg = broadleafImgMeta.src
 const cameroonImg = cameroonImgMeta.src
@@ -20,6 +23,9 @@ const laFumaRicardoImg = laFumaRicardoImgMeta.src
 const rosadoImg = rosadoImgMeta.src
 const sanAndresImg = sanAndresImgMeta.src
 const sumatraImg = sumatraImgMeta.src
+const puraLuzConnecticutImg = puraLuzConnecticutImgMeta.src
+const puraLuzHabanoImg = puraLuzHabanoImgMeta.src
+const puraLuzSanAndresImg = puraLuzSanAndresImgMeta.src
 
 const CigarLightbox = ({ cigar, isOpen, onClose }) => {
   useEffect(() => {
@@ -99,7 +105,9 @@ const CigarLightbox = ({ cigar, isOpen, onClose }) => {
                 {cigar.name}
               </h2>
               <div className="flex items-center gap-4 text-light/90">
-                <span className="text-sm">Size: <span className="font-semibold">{cigar.size}</span></span>
+                {cigar.size && (
+                  <span className="text-sm">Size: <span className="font-semibold">{cigar.size}</span></span>
+                )}
                 <span className="text-sm">Strength: <span className="font-semibold">{cigar.strength}</span></span>
               </div>
             </div>
@@ -228,12 +236,14 @@ const CigarCard = ({ name, image, strength, size, wrapper, binder, filler, onCli
           </div>
         </div>
         
-        <div className="flex items-center justify-between mt-4 pt-3 border-t border-dark/10">
-          <div className="flex items-center gap-2">
-            <span className="text-dark/70 text-sm">Size:</span>
-            <span className="text-dark font-semibold">{size}</span>
-          </div>
-          <div className={`text-sm font-semibold ${getStrengthColor(strength)}`}>
+        <div className="flex items-center mt-4 pt-3 border-t border-dark/10">
+          {size && (
+            <div className="flex items-center gap-2">
+              <span className="text-dark/70 text-sm">Size:</span>
+              <span className="text-dark font-semibold">{size}</span>
+            </div>
+          )}
+          <div className={`text-sm font-semibold ml-auto ${getStrengthColor(strength)}`}>
             {strength}
           </div>
         </div>
@@ -250,10 +260,36 @@ const CigarCard = ({ name, image, strength, size, wrapper, binder, filler, onCli
 
 const SelectionGrid = () => {
   const cigars = [
+    // Pura Luz 107 line (Behike vitola, 6.5x56) - wrapper/binder/filler/strength matched to the
+    // existing Toro cigars with the same wrapper, since these are the same house blends in a
+    // larger vitola. No tasting-note copy has been written for this line yet.
     {
-      name: 'Connecticut Toro',
+      name: 'Pura Luz 107 Connecticut 6.5x56',
+      image: puraLuzConnecticutImg,
+      strength: 'Mild',
+      wrapper: 'Connecticut',
+      binder: 'Ecuador',
+      filler: 'Dominican',
+    },
+    {
+      name: 'Pura Luz 107 Habano 6.5x56',
+      image: puraLuzHabanoImg,
+      strength: 'Medium-Full',
+      wrapper: 'Ecuador',
+      binder: 'Dominican',
+      filler: 'Dominican',
+    },
+    {
+      name: 'Pura Luz 107 San Andres 6.5x56',
+      image: puraLuzSanAndresImg,
+      strength: 'Full',
+      wrapper: 'Mexican',
+      binder: 'Dominican',
+      filler: 'Dominican',
+    },
+    {
+      name: 'Connecticut Toro 6x52',
       image: connecticutImg,
-      size: '6x52',
       strength: 'Mild',
       wrapper: 'Connecticut',
       binder: 'Ecuador',
@@ -293,9 +329,8 @@ const SelectionGrid = () => {
       }
     },
     {
-      name: 'Rosado Toro',
+      name: 'Rosado Toro 6x52',
       image: rosadoImg,
-      size: '6x52',
       strength: 'Mild',
       wrapper: 'Ecuador',
       binder: 'Dominican',
@@ -335,9 +370,8 @@ const SelectionGrid = () => {
       }
     },
     {
-      name: 'Candela Toro',
+      name: 'Candela Toro 6x52',
       image: candelaImg,
-      size: '6x52',
       strength: 'Mild',
       wrapper: 'Dominican',
       binder: 'Dominican',
@@ -377,9 +411,8 @@ const SelectionGrid = () => {
       }
     },
     {
-      name: 'Cameroon Toro',
+      name: 'Cameroon Toro 6x52',
       image: cameroonImg,
-      size: '6x52',
       strength: 'Mild-Medium',
       wrapper: 'Cameroon',
       binder: 'Ecuador',
@@ -419,9 +452,8 @@ const SelectionGrid = () => {
       }
     },
     {
-      name: 'Habano Toro',
+      name: 'Habano Toro 6x52',
       image: habanoImg,
-      size: '6x52',
       strength: 'Medium-Full',
       wrapper: 'Ecuador',
       binder: 'Dominican',
@@ -461,9 +493,8 @@ const SelectionGrid = () => {
       }
     },
     {
-      name: 'Sumatra Toro',
+      name: 'Sumatra Toro 6x52',
       image: sumatraImg,
-      size: '6x52',
       strength: 'Medium-Full',
       wrapper: 'Ecuador',
       binder: 'Dominican',
@@ -503,9 +534,8 @@ const SelectionGrid = () => {
       }
     },
     {
-      name: 'Broadleaf Toro',
+      name: 'Broadleaf Toro 6x52',
       image: broadleafImg,
-      size: '6x52',
       strength: 'Full',
       wrapper: 'Pennsylvania',
       binder: 'Dominican',
@@ -545,9 +575,8 @@ const SelectionGrid = () => {
       }
     },
     {
-      name: 'San Andres Toro',
+      name: 'San Andres Toro 6x52',
       image: sanAndresImg,
-      size: '6x52',
       strength: 'Full',
       wrapper: 'Mexican',
       binder: 'Dominican',
@@ -587,9 +616,8 @@ const SelectionGrid = () => {
       }
     },
     {
-      name: 'Corojo Toro',
+      name: 'Corojo Toro 6x52',
       image: corojoImg,
-      size: '6x52',
       strength: 'Full',
       wrapper: 'Ecuador',
       binder: 'Dominican',
