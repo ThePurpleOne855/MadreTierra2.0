@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro'
+import SelectionGrid from '../components/SelectionGrid.jsx'
+---
+
+<Layout
+  title="Cigar Selection | MadreTierra Cigars"
+  description="Explore MadreTierra's premium cigar selection featuring 10 unique Toro blends: Connecticut, Rosado, Habano, San Andrés, Candela, Broadleaf, Cameroon, Sumatra, and Corojo. From mild to full-bodied, discover the perfect cigar for your taste."
+  keywords="cigar selection, premium cigars, Connecticut cigars, Rosado cigars, Habano cigars, San Andrés cigars, Candela cigars, Broadleaf cigars, Cameroon cigars, Sumatra cigars, Corojo cigars, mild cigars, medium cigars, full-bodied cigars, Toro cigars"
+  path="/selection"
+>
+  <section class="pt-40 pb-24 bg-light min-h-screen">
+    <div class="max-w-7xl mx-auto px-5">
+      {/* Header */}
+      <div class="text-center mb-16 mt-8">
+        <span class="leaf-rule mx-auto mb-5" />
+        <h1 class="text-5xl md:text-6xl font-serif font-bold text-primary mb-4">
+          Our selection
+        </h1>
+        <p class="text-xl text-dark/70 max-w-2xl mx-auto leading-relaxed mb-4">
+          Madre Tierra currently produces 9 unique Toro (6x52) premium blends: Connecticut, Rosado, Habano, San Andrés, Candela, Pennsylvania Broadleaf, Cameroon, Sumatra, and Corojo. And the La Fuma (6x50) medium cut cigar.
+        </p>
+        <p class="text-lg text-dark/60 max-w-2xl mx-auto leading-relaxed">
+          Each cigar offers a distinct and memorable flavor profile, yet remains more approachable than many other cigars from the region, making it enjoyable for both seasoned aficionados and newcomers alike.
+        </p>
+      </div>
+
+      <SelectionGrid client:load />
+
+      {/* Call to Action */}
+      <div class="mt-20 text-center">
+        <div class="bg-gradient-to-br from-primary to-dark rounded-2xl p-12 text-light">
+          <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">
+            Experience the difference
+          </h2>
+          <p class="text-xl text-secondary mb-8 max-w-2xl mx-auto">
+            Each cigar in our selection is carefully crafted to deliver an exceptional smoking experience.
+          </p>
+          <a href="/#where-to-buy" class="btn-solid">
+            Find a retailer
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

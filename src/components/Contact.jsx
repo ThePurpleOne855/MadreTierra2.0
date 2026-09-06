@@ -10,6 +10,7 @@ const Contact = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null) // 'success' or 'error'
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -20,6 +21,7 @@ const Contact = () => {
     // Clear status when user starts typing
     if (submitStatus) {
       setSubmitStatus(null)
+      setErrorMessage('')
     }
   }
 
@@ -30,23 +32,23 @@ const Contact = () => {
 
     try {
       // Get EmailJS credentials from environment variables
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
-      const visitorTemplateId = import.meta.env.VITE_EMAILJS_VISITOR_TEMPLATE_ID // Optional: for visitor confirmation
+      const publicKey = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY
+      const serviceId = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID
+      const templateId = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID
+      const visitorTemplateId = import.meta.env.PUBLIC_EMAILJS_VISITOR_TEMPLATE_ID // Optional: for visitor confirmation
 
       // Validate environment variables with detailed error messages
       if (!publicKey) {
-        console.error('Missing VITE_EMAILJS_PUBLIC_KEY')
-        throw new Error('EmailJS Public Key is missing. Please configure VITE_EMAILJS_PUBLIC_KEY in your environment variables.')
+        console.error('Missing PUBLIC_EMAILJS_PUBLIC_KEY')
+        throw new Error('EmailJS Public Key is missing. Please configure PUBLIC_EMAILJS_PUBLIC_KEY in your environment variables.')
       }
       if (!serviceId) {
-        console.error('Missing VITE_EMAILJS_SERVICE_ID')
-        throw new Error('EmailJS Service ID is missing. Please configure VITE_EMAILJS_SERVICE_ID in your environment variables.')
+        console.error('Missing PUBLIC_EMAILJS_SERVICE_ID')
+        throw new Error('EmailJS Service ID is missing. Please configure PUBLIC_EMAILJS_SERVICE_ID in your environment variables.')
       }
       if (!templateId) {
-        console.error('Missing VITE_EMAILJS_TEMPLATE_ID')
-        throw new Error('EmailJS Template ID is missing. Please configure VITE_EMAILJS_TEMPLATE_ID in your environment variables.')
+        console.error('Missing PUBLIC_EMAILJS_TEMPLATE_ID')
+        throw new Error('EmailJS Template ID is missing. Please configure PUBLIC_EMAILJS_TEMPLATE_ID in your environment variables.')
       }
 
       // Initialize EmailJS with public key
@@ -94,6 +96,7 @@ const Contact = () => {
         })
       } else {
         console.error('EmailJS returned non-success status:', ownerResult)
+        setErrorMessage('Something went wrong. Please try again later.')
         setSubmitStatus('error')
       }
     } catch (error) {
@@ -103,16 +106,16 @@ const Contact = () => {
         status: error.status,
         stack: error.stack
       })
-      
+
       // Provide more specific error messages
-      let errorMessage = 'Something went wrong. Please try again later.'
+      let message = 'Something went wrong. Please try again later.'
       if (error.message) {
-        errorMessage = error.message
+        message = error.message
       } else if (error.text) {
-        errorMessage = error.text
+        message = error.text
       }
-      
-      console.error('Full error:', error)
+
+      setErrorMessage(message)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
@@ -123,15 +126,16 @@ const Contact = () => {
     <section id="contact" className="py-24 bg-light">
       <div className="max-w-4xl mx-auto px-5">
         <div className="text-center mb-12">
+          <span className="leaf-rule mx-auto mb-5" />
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mb-4">
-            Contact Us
+            Contact us
           </h2>
           <p className="text-xl text-dark/70 leading-relaxed">
             Have a question or want to learn more about MadreTierra Cigars? We'd love to hear from you.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-xl p-8 md:p-12">
+        <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
           <div className="space-y-6">
             {/* Name Field */}
             <div>
@@ -145,7 +149,7 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border-2 border-primary/20 rounded-sm focus:outline-none focus:border-secondary transition-all duration-300 text-dark bg-light"
+                className="w-full px-4 py-3 border border-primary/20 rounded-xl focus:outline-none focus:border-secondary transition-colors duration-300 text-dark bg-light"
                 placeholder="Your name"
               />
             </div>
@@ -162,7 +166,7 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border-2 border-primary/20 rounded-sm focus:outline-none focus:border-secondary transition-all duration-300 text-dark bg-light"
+                className="w-full px-4 py-3 border border-primary/20 rounded-xl focus:outline-none focus:border-secondary transition-colors duration-300 text-dark bg-light"
                 placeholder="your.email@example.com"
               />
             </div>
@@ -179,7 +183,7 @@ const Contact = () => {
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border-2 border-primary/20 rounded-sm focus:outline-none focus:border-secondary transition-all duration-300 text-dark bg-light"
+                className="w-full px-4 py-3 border border-primary/20 rounded-xl focus:outline-none focus:border-secondary transition-colors duration-300 text-dark bg-light"
                 placeholder="What is this regarding?"
               />
             </div>
@@ -196,7 +200,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 rows={6}
-                className="w-full px-4 py-3 border-2 border-primary/20 rounded-sm focus:outline-none focus:border-secondary transition-all duration-300 text-dark bg-light resize-none"
+                className="w-full px-4 py-3 border border-primary/20 rounded-xl focus:outline-none focus:border-secondary transition-colors duration-300 text-dark bg-light resize-none"
                 placeholder="Your message..."
               />
             </div>
@@ -206,7 +210,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-10 py-4 bg-secondary text-dark font-bold tracking-wider uppercase text-sm rounded-sm transition-all duration-300 hover:bg-tertiary hover:text-light hover:-translate-y-0.5 hover:shadow-lg hover:shadow-secondary/30 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+                className="btn-solid w-full disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
@@ -214,25 +218,25 @@ const Contact = () => {
 
             {/* Status Messages */}
             {submitStatus === 'success' && (
-              <div className="p-4 bg-green-500/20 border-2 border-green-500/30 rounded-sm text-green-700 text-center">
+              <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-xl text-green-700 text-center">
                 <p className="font-semibold">Thank you! Your message has been sent successfully.</p>
                 <p className="text-sm mt-1">We'll get back to you as soon as possible.</p>
               </div>
             )}
 
             {submitStatus === 'error' && (
-              <div className="p-4 bg-red-500/20 border-2 border-red-500/30 rounded-sm text-red-700 text-center">
+              <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-700 text-center">
                 <p className="font-semibold">Oops! Something went wrong.</p>
-                <p className="text-sm mt-1">Please try again later or contact us directly.</p>
+                <p className="text-sm mt-1">{errorMessage || 'Please try again later or contact us directly.'}</p>
               </div>
             )}
           </div>
         </form>
 
         {/* Contact Numbers Section */}
-        <div className="mt-12 bg-white rounded-lg shadow-xl p-8 md:p-12">
+        <div className="mt-12 bg-white rounded-2xl shadow-lg p-8 md:p-12">
           <h3 className="text-2xl md:text-3xl font-serif font-bold text-primary mb-6 text-center">
-            Contact Numbers
+            Contact numbers
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">

@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro'
+
+const calendarUrl =
+  'https://calendar.google.com/calendar/embed?src=29877f1dc29c09269456640eb2198ab85a5234e11cfb75022bf511fa676e9691%40group.calendar.google.com&ctz=America%2FNew_York'
+---
+
+<Layout
+  title="Private Events & Tastings | MadreTierra Cigars"
+  description="Host an exclusive private tasting event with MadreTierra Cigars. Perfect for corporate gatherings, celebrations, or intimate gatherings. Browse our calendar and book your private event today."
+  keywords="private cigar tastings, cigar events, corporate cigar events, private cigar parties, cigar tasting events, exclusive cigar events, book private event"
+  path="/private-events"
+  bodyClass="bg-dark"
+>
+  <section class="py-24 bg-dark min-h-screen">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="text-center mb-16">
+        <span class="leaf-rule mx-auto mb-5" />
+        <h1 class="text-5xl md:text-6xl font-serif font-bold text-light mb-4">
+          Private events
+        </h1>
+        <p class="text-xl text-secondary max-w-2xl mx-auto leading-relaxed">
+          Experience MadreTierra at exclusive private events and tastings. View our calendar below to see upcoming events, or contact us to host your own private event.
+        </p>
+      </div>
+
+      {/* Google Calendar Embed */}
+      <div class="w-full max-w-6xl mx-auto">
+        <div class="bg-dark/50 rounded-2xl p-6 border border-secondary/20 overflow-hidden">
+          <div class="rounded-xl overflow-hidden shadow-2xl relative bg-white">
+            <iframe
+              src={calendarUrl}
+              style={{ border: 0, width: '100%', height: '600px', display: 'block' }}
+              scrolling="no"
+              title="MadreTierra Private Events Calendar"
+              class="w-full"
+              allowfullscreen
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Additional Info Section */}
+      <div class="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="bg-light/5 p-10 border border-secondary/20 rounded-2xl transition-colors duration-300 hover:border-secondary/50">
+          <h3 class="text-2xl font-serif font-bold text-secondary mb-4">
+            Private tastings
+          </h3>
+          <p class="text-light mb-6 leading-relaxed">
+            Host an exclusive private tasting event featuring our premium selection of MadreTierra cigars. Perfect for corporate gatherings, celebrations, or intimate gatherings.
+          </p>
+        </div>
+
+        <div class="bg-light/5 p-10 border border-secondary/20 rounded-2xl transition-colors duration-300 hover:border-secondary/50">
+          <h3 class="text-2xl font-serif font-bold text-secondary mb-4">
+            Event booking
+          </h3>
+          <p class="text-light mb-6 leading-relaxed">
+            View our calendar above to see scheduled private events. If you'd like to host your own event, contact us to discuss your event needs and we'll work with you to create an unforgettable experience.
+          </p>
+        </div>
+      </div>
+
+      {/* Call to Action */}
+      <div class="mt-20 text-center">
+        <div class="bg-gradient-to-br from-primary to-dark rounded-2xl p-12 text-light border border-secondary/20">
+          <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">
+            Ready to plan your event?
+          </h2>
+          <p class="text-xl text-secondary mb-8 max-w-2xl mx-auto">
+            Contact us today to discuss your private event needs and discover how we can make your gathering exceptional.
+          </p>
+          <a href="/#contact" class="btn-solid">
+            Contact us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,63 @@
+---
+import logoImage from '../logo/Madre-Tierra-Logo.png'
+import veteranLogo from '../logo/VeteranOwnedBusinessLogo.png'
+import dominicanFlag from '../logo/DominicanFlagTransparent.png'
+import backgroundImage from '../Background/background2.png'
+---
+
+<section id="home" class="relative h-screen flex items-center justify-center text-center overflow-hidden">
+  {/* Background Image */}
+  <div
+    class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    style={{ backgroundImage: `url(${backgroundImage.src})` }}
+  ></div>
+
+  {/* Dark Overlay for readability */}
+  <div class="absolute inset-0 bg-dark/60"></div>
+
+  <div class="relative z-10 max-w-6xl px-5 animate-fade-in-up">
+    {/* Horizontal Logo Layout */}
+    <div class="mb-6 flex flex-row items-center justify-center gap-2 sm:gap-4 md:gap-6 lg:gap-8">
+      {/* Left: Dominican Flag */}
+      <img
+        src={dominicanFlag.src}
+        alt="Dominican Republic"
+        class="h-20 sm:h-28 md:h-40 lg:h-52 w-auto object-contain -translate-y-2 hover:scale-105 transition-transform duration-300"
+        style={{ filter: 'drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35))' }}
+      />
+
+      {/* Center: MadreTierra Logo */}
+      <img
+        src={logoImage.src}
+        alt="MadreTierra Cigars"
+        class="h-24 sm:h-32 md:h-44 lg:h-56 w-auto object-contain max-w-[90%] transition-transform duration-500 hover:scale-105"
+        style={{ filter: 'drop-shadow(0 12px 20px rgba(0, 0, 0, 0.4))' }}
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"
+      />
+      <h1 class="hidden text-5xl md:text-7xl font-serif font-bold text-light">
+        MadreTierra Cigars
+      </h1>
+
+      {/* Right: Veteran Owned Business Logo */}
+      <img
+        src={veteranLogo.src}
+        alt="Veteran Owned Business"
+        class="h-20 sm:h-28 md:h-40 lg:h-52 w-auto object-contain -translate-y-2 hover:scale-105 transition-transform duration-300"
+        style={{ filter: 'drop-shadow(0 6px 10px rgba(0, 0, 0, 0.35))' }}
+      />
+    </div>
+
+    <p class="text-xl md:text-2xl text-secondary mb-4 font-semibold">
+      The best cigars you have never smoked
+    </p>
+    <span class="leaf-rule mx-auto mb-10" />
+    <a href="/selection" class="btn-solid">
+      Explore our cigar selection
+    </a>
+  </div>
+
+  {/* Scroll Indicator */}
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+    <div class="w-0.5 h-8 bg-secondary animate-bounce"></div>
+  </div>
+</section>

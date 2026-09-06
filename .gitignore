@@ -18,6 +18,9 @@ dist-ssr
 build
 *.local
 
+# Astro
+.astro/
+
 # Environment variables (CRITICAL - Contains sensitive API keys)
 .env
 .env.local
@@ -25,6 +28,23 @@ build
 .env.test.local
 .env.production.local
 .env*.local
+
+# Credentials / keys / tokens (CRITICAL - never commit real secrets)
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.json
+*serviceAccount*.json
+.npmrc
+.netrc
+
+# Claude Code local settings (personal, machine-specific - not shared)
+.claude/settings.local.json
+
+# Vercel CLI local project link
+.vercel
 
 # Editor directories and files
 .vscode/*

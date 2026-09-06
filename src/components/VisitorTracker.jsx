@@ -1,10 +1,8 @@
 import { useEffect, useRef } from 'react'
-import { useLocation } from 'react-router-dom'
 
 // Component to track website visits and notify the owner
 // This sends an email notification to the owner (not the visitor) when someone visits
-const VisitorTracker = () => {
-  const location = useLocation()
+const VisitorTracker = ({ currentPath }) => {
   const hasTrackedVisit = useRef(false)
   const cooldownKey = 'visit_tracked_cooldown'
   const cooldownSeconds = 30 // Cooldown period in seconds to prevent spam
@@ -38,7 +36,7 @@ const VisitorTracker = () => {
       try {
         // Collect visitor information
         const visitorData = {
-          page: location.pathname || '/',
+          page: currentPath || '/',
           referrer: document.referrer || 'Direct',
           userAgent: navigator.userAgent || 'Unknown',
           timestamp: new Date().toISOString(),
@@ -95,7 +93,7 @@ const VisitorTracker = () => {
     return () => {
       clearTimeout(timeoutId)
     }
-  }, [location.pathname])
+  }, [currentPath])
 
   // This component doesn't render anything
   return null

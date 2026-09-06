@@ -1,0 +1,6 @@
+{
+  "enabledPlugins": {
+    "ponytail@ponytail": true,
+    "security-guidance@claude-plugins-official": true
+  }
+}

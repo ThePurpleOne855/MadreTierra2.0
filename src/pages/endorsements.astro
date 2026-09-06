@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro'
+import joseSantanaImgMeta from '../EndorsementPicture/JoseSantanaWebDesign.png'
+
+const joseSantanaImg = joseSantanaImgMeta.src
+
+const endorsements = [
+  {
+    image: joseSantanaImg,
+    title: 'Jose Santana Web Design',
+    description:
+      'Professional web design services crafting modern, responsive websites that elevate your brand and drive results.',
+    link: 'https://josesantana.dev/',
+  },
+]
+---
+
+<Layout
+  title="Endorsements | MadreTierra Cigars"
+  description="Discover our curated selection of endorsed products and services. MadreTierra Cigars proudly partners with brands that share our commitment to quality and excellence."
+  keywords="endorsements, partnerships, premium products, quality brands, cigar accessories, recommended products"
+  path="/endorsements"
+>
+  <section class="pt-40 pb-24 bg-light min-h-screen">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="text-center mb-16 mt-8">
+        <span class="leaf-rule mx-auto mb-5" />
+        <h1 class="text-5xl md:text-6xl font-serif font-bold text-primary mb-4">
+          Our endorsements
+        </h1>
+        <p class="text-xl text-dark/70 max-w-2xl mx-auto leading-relaxed mb-4">
+          Carefully selected products and services that complement the MadreTierra experience.
+        </p>
+        <p class="text-lg text-dark/60 max-w-2xl mx-auto leading-relaxed">
+          We only endorse brands that meet our high standards of quality, craftsmanship, and excellence.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 max-w-6xl mx-auto">
+        {endorsements.map((endorsement) => (
+          <div class="group relative bg-light rounded-2xl overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl">
+            <div class="relative h-72 md:h-80 bg-gradient-to-br from-primary to-tertiary overflow-hidden">
+              <img
+                src={endorsement.image}
+                alt={endorsement.title}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+
+            <div class="p-8">
+              <h3 class="text-2xl font-serif font-bold text-primary mb-4 group-hover:text-secondary transition-colors duration-300">
+                {endorsement.title}
+              </h3>
+              <p class="text-dark/70 text-base leading-relaxed mb-6">
+                {endorsement.description}
+              </p>
+              <a href={endorsement.link} target="_blank" rel="noopener noreferrer" class="btn-outline">
+                Learn more
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Call to Action */}
+      <div class="mt-20 text-center">
+        <div class="bg-gradient-to-br from-primary to-dark rounded-2xl p-12 text-light relative overflow-hidden">
+          <div
+            class="absolute inset-0 opacity-30"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid2' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 100 0 L 0 0 0 100' fill='none' stroke='rgba(212,175,55,0.1)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23grid2)'/%3E%3C/svg%3E")`,
+            }}
+          ></div>
+
+          <div class="relative z-10">
+            <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">
+              Partner with us
+            </h2>
+            <p class="text-xl text-secondary mb-8 max-w-2xl mx-auto">
+              Interested in becoming an endorsed partner? We're always looking for quality brands that align with our values.
+            </p>
+            <a href="/#contact" class="btn-solid">
+              Get in touch
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

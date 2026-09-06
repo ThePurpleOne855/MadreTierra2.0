@@ -1,17 +1,25 @@
-import { useEffect, useRef, useState } from 'react'
-import SEO from '../components/SEO'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import broadleafImg from '../NewSelection/Broadleaf.jpeg'
-import cameroonImg from '../NewSelection/Cameroon.jpeg'
-import candelaImg from '../NewSelection/Candela.jpeg'
-import connecticutImg from '../NewSelection/Connecticut.jpeg'
-import corojoImg from '../NewSelection/Corojo.jpeg'
-import habanoImg from '../NewSelection/Habano.jpeg'
-import laFumaRicardoImg from '../NewSelection/La-Fuma-Ricardo.jpeg'
-import rosadoImg from '../NewSelection/Rosado.jpeg'
-import sanAndresImg from '../NewSelection/San Andres.jpeg'
-import sumatraImg from '../NewSelection/Sumatra.jpeg'
+import { useEffect, useState } from 'react'
+import broadleafImgMeta from '../NewSelection/Broadleaf.jpeg'
+import cameroonImgMeta from '../NewSelection/Cameroon.jpeg'
+import candelaImgMeta from '../NewSelection/Candela.jpeg'
+import connecticutImgMeta from '../NewSelection/Connecticut.jpeg'
+import corojoImgMeta from '../NewSelection/Corojo.jpeg'
+import habanoImgMeta from '../NewSelection/Habano.jpeg'
+import laFumaRicardoImgMeta from '../NewSelection/La-Fuma-Ricardo.jpeg'
+import rosadoImgMeta from '../NewSelection/Rosado.jpeg'
+import sanAndresImgMeta from '../NewSelection/San Andres.jpeg'
+import sumatraImgMeta from '../NewSelection/Sumatra.jpeg'
+
+const broadleafImg = broadleafImgMeta.src
+const cameroonImg = cameroonImgMeta.src
+const candelaImg = candelaImgMeta.src
+const connecticutImg = connecticutImgMeta.src
+const corojoImg = corojoImgMeta.src
+const habanoImg = habanoImgMeta.src
+const laFumaRicardoImg = laFumaRicardoImgMeta.src
+const rosadoImg = rosadoImgMeta.src
+const sanAndresImg = sanAndresImgMeta.src
+const sumatraImg = sumatraImgMeta.src
 
 const CigarLightbox = ({ cigar, isOpen, onClose }) => {
   useEffect(() => {
@@ -61,7 +69,7 @@ const CigarLightbox = ({ cigar, isOpen, onClose }) => {
       onClick={onClose}
     >
       <div
-        className="relative bg-light rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+        className="relative bg-light rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -152,32 +160,6 @@ const CigarLightbox = ({ cigar, isOpen, onClose }) => {
 }
 
 const CigarCard = ({ name, image, strength, size, wrapper, binder, filler, onClick }) => {
-  const cardRef = useRef(null)
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true)
-          }
-        })
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    )
-
-    if (cardRef.current) {
-      observer.observe(cardRef.current)
-    }
-
-    return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current)
-      }
-    }
-  }, [])
-
   const getStrengthColor = (strength) => {
     if (strength.toLowerCase().includes('mild')) return 'text-green-400'
     if (strength.toLowerCase().includes('medium') || strength.toLowerCase().includes('med')) return 'text-secondary'
@@ -194,11 +176,8 @@ const CigarCard = ({ name, image, strength, size, wrapper, binder, filler, onCli
 
   return (
     <div
-      ref={cardRef}
       onClick={onClick}
-      className={`group relative bg-light rounded-lg overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 cursor-pointer ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}
+      className="group relative bg-light rounded-2xl overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl cursor-pointer"
     >
       {/* Image Container */}
       <div className="relative h-80 bg-gradient-to-br from-primary to-tertiary overflow-hidden">
@@ -259,17 +238,17 @@ const CigarCard = ({ name, image, strength, size, wrapper, binder, filler, onCli
           </div>
         </div>
         <div className="mt-4 text-sm text-secondary font-semibold">
-          Click to view details →
+          Click to view details
         </div>
       </div>
 
       {/* Hover Effect Border */}
-      <div className="absolute inset-0 border-2 border-secondary/0 group-hover:border-secondary/30 rounded-lg transition-all duration-300 pointer-events-none"></div>
+      <div className="absolute inset-0 border border-secondary/0 group-hover:border-secondary/30 rounded-2xl transition-all duration-300 pointer-events-none"></div>
     </div>
   )
 }
 
-const SelectionPage = () => {
+const SelectionGrid = () => {
   const cigars = [
     {
       name: 'Connecticut Toro',
@@ -725,100 +704,56 @@ const SelectionPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-light">
-      <SEO
-        title="Cigar Selection | MadreTierra Cigars"
-        description="Explore MadreTierra's premium cigar selection featuring 10 unique Toro blends: Connecticut, Rosado, Habano, San Andrés, Candela, Broadleaf, Cameroon, Sumatra, and Corojo. From mild to full-bodied, discover the perfect cigar for your taste."
-        keywords="cigar selection, premium cigars, Connecticut cigars, Rosado cigars, Habano cigars, San Andrés cigars, Candela cigars, Broadleaf cigars, Cameroon cigars, Sumatra cigars, Corojo cigars, mild cigars, medium cigars, full-bodied cigars, Toro cigars"
-        url="/selection"
-      />
-      <Navbar />
-      <section className="pt-40 pb-24 bg-light min-h-screen">
-        <div className="max-w-7xl mx-auto px-5">
-          {/* Header */}
-          <div className="text-center mb-16 mt-8">
-            <h1 className="text-5xl md:text-6xl font-serif font-bold text-primary mb-4">
-              Our Selection
-            </h1>
-            <p className="text-xl text-dark/70 max-w-2xl mx-auto leading-relaxed mb-4">
-              Madre Tierra currently produces 9 unique Toro (6x52) premium blends: Connecticut, Rosado, Habano, San Andrés, Candela, Pennsylvania Broadleaf, Cameroon, Sumatra, and Corojo. And the La Fuma (6x50) medium cut cigar.
-            </p>
-            <p className="text-lg text-dark/60 max-w-2xl mx-auto leading-relaxed">
-              Each cigar offers a distinct and memorable flavor profile, yet remains more approachable than many other cigars from the region, making it enjoyable for both seasoned aficionados and newcomers alike.
-            </p>
-          </div>
+    <>
+      {/* Filter Buttons */}
+      <div className="flex flex-wrap justify-center gap-4 mb-12">
+        {filters.map((filterOption) => (
+          <button
+            key={filterOption.value}
+            onClick={() => setFilter(filterOption.value)}
+            className={`px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 ${
+              filter === filterOption.value
+                ? 'bg-secondary text-dark shadow-lg'
+                : 'bg-dark/5 text-dark hover:bg-dark/10 border border-transparent hover:border-secondary/30'
+            }`}
+          >
+            {filterOption.label}
+          </button>
+        ))}
+      </div>
 
-          {/* Filter Buttons */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {filters.map((filterOption) => (
-              <button
-                key={filterOption.value}
-                onClick={() => setFilter(filterOption.value)}
-                className={`px-6 py-3 rounded-sm font-semibold tracking-wider uppercase text-sm transition-all duration-300 ${
-                  filter === filterOption.value
-                    ? 'bg-secondary text-dark shadow-lg'
-                    : 'bg-dark/5 text-dark hover:bg-dark/10 border-2 border-transparent hover:border-secondary/30'
-                }`}
-              >
-                {filterOption.label}
-              </button>
-            ))}
-          </div>
+      {/* Cigars Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        {filteredCigars.map((cigar, index) => (
+          <CigarCard
+            key={index}
+            name={cigar.name}
+            image={cigar.image}
+            size={cigar.size}
+            strength={cigar.strength}
+            wrapper={cigar.wrapper}
+            binder={cigar.binder}
+            filler={cigar.filler}
+            onClick={() => handleCigarClick(cigar)}
+          />
+        ))}
+      </div>
 
-          {/* Cigars Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {filteredCigars.map((cigar, index) => (
-              <CigarCard
-                key={index}
-                name={cigar.name}
-                image={cigar.image}
-                size={cigar.size}
-                strength={cigar.strength}
-                wrapper={cigar.wrapper}
-                binder={cigar.binder}
-                filler={cigar.filler}
-                onClick={() => handleCigarClick(cigar)}
-              />
-            ))}
-          </div>
-
-          {/* Empty State */}
-          {filteredCigars.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-xl text-dark/70">No cigars found in this category.</p>
-            </div>
-          )}
-
-          {/* Call to Action */}
-          <div className="mt-20 text-center">
-            <div className="bg-gradient-to-br from-primary to-dark rounded-lg p-12 text-light">
-              <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">
-                Experience the Difference
-              </h2>
-              <p className="text-xl text-secondary mb-8 max-w-2xl mx-auto">
-                Each cigar in our selection is carefully crafted to deliver an exceptional smoking experience.
-              </p>
-              <a
-                href="/#where-to-buy"
-                className="inline-block px-10 py-4 bg-secondary text-dark font-bold tracking-wider uppercase text-sm rounded-sm transition-all duration-300 hover:bg-tertiary hover:text-light hover:-translate-y-0.5 hover:shadow-lg hover:shadow-secondary/30"
-              >
-                Find a Retailer
-              </a>
-            </div>
-          </div>
+      {/* Empty State */}
+      {filteredCigars.length === 0 && (
+        <div className="text-center py-16">
+          <p className="text-xl text-dark/70">No cigars found in this category.</p>
         </div>
-      </section>
-      
+      )}
+
       {/* Lightbox Modal */}
       <CigarLightbox
         cigar={selectedCigar}
         isOpen={isLightboxOpen}
         onClose={handleCloseLightbox}
       />
-      
-      <Footer />
-    </div>
+    </>
   )
 }
 
-export default SelectionPage
+export default SelectionGrid

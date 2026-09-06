@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout
+  title="Page Not Found | MadreTierra Cigars"
+  description="The page you're looking for doesn't exist. Explore our premium cigar selection, find retailers, or browse our gallery."
+  path="/404"
+  robots="noindex, follow"
+  bodyClass="bg-dark"
+>
+  <section class="py-24 bg-dark min-h-screen flex items-center">
+    <div class="max-w-4xl mx-auto px-5 text-center">
+      <div class="mb-8">
+        <h1 class="text-8xl md:text-9xl font-serif font-bold text-secondary mb-4">
+          404
+        </h1>
+        <h2 class="text-4xl md:text-5xl font-serif font-bold text-light mb-6">
+          Page not found
+        </h2>
+        <p class="text-xl text-secondary mb-8 max-w-2xl mx-auto leading-relaxed">
+          The page you're looking for doesn't exist or has been moved. Our website has been redesigned, so some old links may no longer work.
+        </p>
+      </div>
+
+      <div class="bg-light/5 border border-secondary/20 rounded-2xl p-8 mb-8">
+        <h3 class="text-2xl font-serif font-bold text-secondary mb-6">
+          Popular pages
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <a href="/" class="p-4 bg-light/10 hover:bg-light/20 border border-secondary/20 hover:border-secondary rounded-xl transition-all duration-300 text-light block">
+            <div class="font-serif font-bold text-secondary mb-2">Home</div>
+            <div class="text-sm text-light/80">Return to homepage</div>
+          </a>
+          <a href="/selection" class="p-4 bg-light/10 hover:bg-light/20 border border-secondary/20 hover:border-secondary rounded-xl transition-all duration-300 text-light block">
+            <div class="font-serif font-bold text-secondary mb-2">Cigar Selection</div>
+            <div class="text-sm text-light/80">Browse our premium cigars</div>
+          </a>
+          <a href="/locations" class="p-4 bg-light/10 hover:bg-light/20 border border-secondary/20 hover:border-secondary rounded-xl transition-all duration-300 text-light block">
+            <div class="font-serif font-bold text-secondary mb-2">Find a Retailer</div>
+            <div class="text-sm text-light/80">Locate authorized retailers</div>
+          </a>
+          <a href="/gallery" class="p-4 bg-light/10 hover:bg-light/20 border border-secondary/20 hover:border-secondary rounded-xl transition-all duration-300 text-light block">
+            <div class="font-serif font-bold text-secondary mb-2">Gallery</div>
+            <div class="text-sm text-light/80">View our cigar gallery</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/" class="btn-solid">
+          Go to homepage
+        </a>
+        <a href="/selection" class="btn-outline">
+          View cigar selection
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import logoImageMeta from '../logo/Madre-Tierra-Logo.png'
 
-const logoImage = new URL('../logo/Madre-Tierra-Logo.png', import.meta.url).href
+const logoImage = logoImageMeta.src
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -9,8 +9,6 @@ const Navbar = () => {
   const [isLightBackground, setIsLightBackground] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
-  const location = useLocation()
-  const navigate = useNavigate()
 
   useEffect(() => {
     const detectBackgroundColor = () => {
@@ -119,84 +117,57 @@ const Navbar = () => {
     }
     
     window.addEventListener('scroll', handleScroll, { passive: true })
-    
-    // Also check on route change
-    const timeoutId = setTimeout(detectBackgroundColor, 100)
-    
+    detectBackgroundColor()
+
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      clearTimeout(timeoutId)
     }
-  }, [location.pathname])
+  }, [])
 
   const navLinks = [
-    { href: '/', label: 'Home', isRoute: true },
-    { href: '/selection', label: 'Cigar Selection', isRoute: true },
-    { href: '/gallery', label: 'Gallery', isRoute: true },
-    { href: '/private-events', label: 'Calendar', isRoute: true },
-    { href: '/#about', label: 'About', isRoute: true },
-    { href: '/#where-to-buy', label: 'Where To Buy', isRoute: true },
-    { href: '/endorsements', label: 'Endorsements', isRoute: true },
-    { href: '/#contact', label: 'Contact Us', isRoute: true },
+    { href: '/', label: 'Home' },
+    { href: '/selection', label: 'Cigar Selection' },
+    { href: '/gallery', label: 'Gallery' },
+    { href: '/private-events', label: 'Calendar' },
+    { href: '/#about', label: 'About' },
+    { href: '/#where-to-buy', label: 'Where To Buy' },
+    { href: '/endorsements', label: 'Endorsements' },
+    { href: '/#contact', label: 'Contact Us' },
   ]
 
-  const handleLinkClick = (e, link) => {
-    e.preventDefault()
-    setIsMenuOpen(false)
-    
-    if (link.isRoute) {
-      // If link has a hash, navigate with hash
-      if (link.href.includes('#')) {
-        const [path, hash] = link.href.split('#')
-        // Navigate to path with hash
-        navigate(`${path}#${hash}`)
-      } else {
-        // Regular route navigation
-        navigate(link.href)
-        // Scroll to top for home page
-        if (link.href === '/') {
-          setTimeout(() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' })
-          }, 100)
-        }
-      }
+  const handleLogoClick = (e) => {
+    if (window.location.pathname === '/') {
+      e.preventDefault()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 
   // Determine navbar colors based on background
-  const navBgClass = isLightBackground 
-    ? (scrolled ? 'bg-light/98 shadow-lg' : 'bg-light/95')
-    : (scrolled ? 'bg-dark/98 shadow-lg' : 'bg-dark/95')
-  
-  const navTextClass = isLightBackground 
-    ? 'text-dark hover:text-secondary' 
+  const navBgClass = isLightBackground
+    ? (scrolled ? 'bg-light/90 shadow-sm' : 'bg-light/70')
+    : (scrolled ? 'bg-dark/90 shadow-sm' : 'bg-dark/60')
+
+  const navTextClass = isLightBackground
+    ? 'text-dark hover:text-secondary'
     : 'text-light hover:text-secondary'
-  
-  const navBorderClass = isLightBackground
-    ? 'bg-primary'
-    : 'bg-secondary'
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${navBgClass} ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+    <nav className={`fixed top-0 w-full z-50 backdrop-blur-md transition-all duration-300 ${navBgClass} ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="max-w-7xl mx-auto px-5">
         <div className="flex justify-between items-center py-4">
-          <a 
-            href="/" 
+          <a
+            href="/"
             className="logo flex items-center group"
-            onClick={(e) => {
-              e.preventDefault()
-              navigate('/')
-              window.scrollTo({ top: 0, behavior: 'smooth' })
-            }}
+            onClick={handleLogoClick}
           >
             <img 
               src={logoImage} 
               alt="MadreTierra Cigars" 
               className="h-14 md:h-16 lg:h-20 w-auto object-contain max-w-[280px] transition-all duration-300 group-hover:scale-105 group-hover:brightness-110"
               style={{
-                filter: isLightBackground 
-                  ? 'drop-shadow(0 2px 4px rgba(1, 68, 33, 0.2)) drop-shadow(0 0 8px rgba(212, 175, 55, 0.15))'
-                  : 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 12px rgba(212, 175, 55, 0.3)) drop-shadow(0 0 6px rgba(1, 68, 33, 0.2))'
+                filter: isLightBackground
+                  ? 'drop-shadow(0 2px 4px rgba(1, 68, 33, 0.2))'
+                  : 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4))'
               }}
               onError={(e) => {
                 // Fallback to text if image fails to load
@@ -217,8 +188,7 @@ const Navbar = () => {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className={`${navTextClass} transition-colors duration-300 text-base font-semibold tracking-wider relative group`}
-                  onClick={(e) => handleLinkClick(e, link)}
+                  className={`${navTextClass} transition-colors duration-300 text-[15px] font-medium tracking-normal relative group`}
                 >
                   {link.label}
                   <span className={`absolute bottom-0 left-0 w-0 h-0.5 ${isLightBackground ? 'bg-primary' : 'bg-secondary'} transition-all duration-300 group-hover:w-full`}></span>
@@ -253,8 +223,8 @@ const Navbar = () => {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className={`${navTextClass} transition-colors duration-300 text-base font-semibold tracking-wider`}
-                  onClick={(e) => handleLinkClick(e, link)}
+                  className={`${navTextClass} transition-colors duration-300 text-[15px] font-medium tracking-normal`}
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   {link.label}
                 </a>

@@ -1,0 +1,119 @@
+---
+import '../styles/global.css'
+import Navbar from '../components/Navbar.jsx'
+import Footer from '../components/Footer.astro'
+import AgeGate from '../components/AgeGate.jsx'
+import VisitorTracker from '../components/VisitorTracker.jsx'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
+
+const {
+  title = 'MadreTierra Cigars | Premium Handcrafted Cigars',
+  description = 'Discover MadreTierra Cigars - premium handcrafted cigars made with excellence. Experience the finest selection of cigars, from Connecticut to full-bodied options. Visit our authorized retailers or host a private tasting event.',
+  keywords = 'cigars, premium cigars, handcrafted cigars, cigar selection, cigar retailers, cigar tastings, Connecticut cigars, full-bodied cigars, cigar lounge, cigar brands',
+  path = '/',
+  robots = 'index, follow',
+  structuredData = null,
+  bodyClass = 'bg-light',
+} = Astro.props
+
+const siteUrl = 'https://www.madretierracigars.com'
+const fullUrl = new URL(path, siteUrl).toString()
+const imageUrl = `${siteUrl}/favicon.avif`
+const currentPath = Astro.url.pathname
+
+const defaultStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'MadreTierra Cigars',
+  description: 'Premium handcrafted cigars made with excellence',
+  url: siteUrl,
+  logo: imageUrl,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'Customer Service',
+  },
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="MadreTierra Cigars" />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={fullUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={fullUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:site_name" content="MadreTierra Cigars" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={fullUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/avif" href="/favicon.avif" />
+    <link rel="apple-touch-icon" href="/favicon.avif" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta name="theme-color" content="#014421" />
+    <meta name="msapplication-TileColor" content="#014421" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData || defaultStructuredData)} />
+  </head>
+  <body class={bodyClass}>
+    <AgeGate client:load currentPath={currentPath} />
+    <VisitorTracker client:idle currentPath={currentPath} />
+    <Navbar client:load />
+    <slot />
+    <Footer />
+    <Analytics client:idle />
+    <SpeedInsights client:idle />
+
+    <script>
+      // Smooth-scroll to in-page anchors with an offset for the fixed navbar,
+      // both on initial load (cross-page "/#section" links) and same-page clicks.
+      const NAV_OFFSET = 80
+
+      const scrollToHash = (hash) => {
+        const target = hash && document.querySelector(hash)
+        if (!target) return
+        const top = target.getBoundingClientRect().top + window.scrollY - NAV_OFFSET
+        window.scrollTo({ top, behavior: 'smooth' })
+      }
+
+      if (window.location.hash) {
+        setTimeout(() => scrollToHash(window.location.hash), 100)
+      }
+
+      document.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href*="#"]')
+        if (!link) return
+        const url = new URL(link.href, window.location.href)
+        if (url.pathname !== window.location.pathname || !url.hash) return
+        e.preventDefault()
+        scrollToHash(url.hash)
+      })
+    </script>
+  </body>
+</html>

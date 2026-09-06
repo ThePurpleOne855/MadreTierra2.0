@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro'
+import GalleryGrid from '../components/GalleryGrid.jsx'
+
+// Import all gallery media (resolved to build-time URLs, computed once at build).
+const galleryImagesGlob = import.meta.glob('../GalleryImages/*.{jpg,jpeg,png,avif}', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+})
+const galleryVideosGlob = import.meta.glob('../GalleryImages/*.{mp3,mp4,webm,ogg}', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+})
+
+const items = []
+
+Object.keys(galleryImagesGlob).forEach((path) => {
+  const filename = path.split('/').pop()
+  const name = filename.replace(/\.(jpg|jpeg|png|avif)$/i, '')
+  items.push({
+    id: `img-${filename}`,
+    media: galleryImagesGlob[path],
+    name,
+    type: 'image',
+  })
+})
+
+Object.keys(galleryVideosGlob).forEach((path) => {
+  const filename = path.split('/').pop()
+  const isAudio = /\.(mp3|ogg|wav)$/i.test(filename)
+  const name = filename.replace(/\.(mp3|mp4|webm|ogg|wav)$/i, '').replace(/VIDEO-?/i, '').trim()
+  items.push({
+    id: `media-${filename}`,
+    media: galleryVideosGlob[path],
+    name: name || filename,
+    type: 'video',
+    isAudio,
+  })
+})
+
+items.sort((a, b) => {
+  const numA = parseInt(a.name.match(/\d+/)?.[0] || '0')
+  const numB = parseInt(b.name.match(/\d+/)?.[0] || '0')
+  return numA - numB
+})
+---
+
+<Layout
+  title="Gallery | MadreTierra Cigars"
+  description="Explore our gallery showcasing the craftsmanship and artistry of MadreTierra Cigars. View images and videos of our premium handcrafted cigars, events, and the passion behind every cigar."
+  keywords="cigar gallery, cigar photos, cigar videos, premium cigar images, cigar craftsmanship, cigar artistry, MadreTierra gallery"
+  path="/gallery"
+>
+  <section class="py-24 bg-light min-h-screen">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="text-center mb-16">
+        <span class="leaf-rule mx-auto mb-5" />
+        <h1 class="text-5xl md:text-6xl font-serif font-bold text-primary mb-4">
+          Gallery
+        </h1>
+        <p class="text-xl text-dark/70 max-w-2xl mx-auto leading-relaxed">
+          Explore our premium collection of handcrafted cigars and brand imagery. Each image and video captures the essence of MadreTierra's commitment to excellence.
+        </p>
+      </div>
+
+      <GalleryGrid client:load items={items} />
+
+      <div class="mt-20 text-center">
+        <div class="bg-gradient-to-br from-primary to-dark rounded-2xl p-12 text-light">
+          <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">
+            Experience the artistry
+          </h2>
+          <p class="text-xl text-secondary mb-8 max-w-2xl mx-auto">
+            Each image and video tells a story of craftsmanship, tradition, and passion. Visit our selection page to learn more about our premium cigars.
+          </p>
+          <a href="/selection" class="btn-solid">
+            View our selection
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,46 @@
+---
+const retailers = [
+  {
+    title: 'Premium Retailers',
+    description: 'Visit our network of authorized premium cigar retailers and lounges.',
+    linkText: 'Find a Retailer',
+    linkTo: '/locations',
+  },
+  {
+    title: 'Private Events',
+    description: 'Experience MadreTierra at exclusive events and tastings.',
+    linkText: 'Learn More',
+    linkTo: '/private-events',
+  },
+]
+---
+
+<section id="where-to-buy" class="py-24 bg-dark">
+  <div class="max-w-7xl mx-auto px-5">
+    <span class="leaf-rule mx-auto mb-5" />
+    <h2 class="text-4xl md:text-6xl font-serif font-bold text-light text-center mb-4">
+      Where to buy
+    </h2>
+    <p class="text-xl text-secondary/90 text-center mb-16">
+      Find MadreTierra Cigars at authorized retailers near you
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      {retailers.map((retailer) => (
+        <div class="bg-light/5 p-10 border border-secondary/15 rounded-2xl transition-colors duration-300 hover:border-secondary/50">
+          <h3 class="text-2xl font-serif font-bold text-secondary mb-4">
+            {retailer.title}
+          </h3>
+          <p class="text-light/90 mb-6 leading-relaxed">
+            {retailer.description}
+          </p>
+          <a
+            href={retailer.linkTo}
+            class="inline-block text-secondary hover:text-light font-semibold border-b border-secondary/40 hover:border-light transition-colors duration-300"
+          >
+            {retailer.linkText}
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

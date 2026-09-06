@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Hero from '../components/Hero.astro'
+import Featured from '../components/Featured.astro'
+import About from '../components/About.astro'
+import WhereToBuy from '../components/WhereToBuy.astro'
+import Experience from '../components/Experience.astro'
+import Contact from '../components/Contact.jsx'
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'Organization'],
+  name: 'MadreTierra Cigars',
+  description: 'Premium handcrafted cigars made with excellence. Experience the finest selection of cigars, from Connecticut to full-bodied options.',
+  url: 'https://www.madretierracigars.com',
+  logo: 'https://www.madretierracigars.com/favicon.avif',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'Customer Service',
+  },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://www.madretierracigars.com/search?q={search_term_string}',
+    'query-input': 'required name=search_term_string',
+  },
+}
+---
+
+<Layout
+  title="MadreTierra Cigars | Premium Handcrafted Cigars"
+  description="Discover MadreTierra Cigars - premium handcrafted cigars made with excellence. Experience the finest selection of cigars, from Connecticut to full-bodied options. Visit our authorized retailers or host a private tasting event."
+  keywords="cigars, premium cigars, handcrafted cigars, cigar selection, Connecticut cigars, full-bodied cigars, cigar retailers, cigar tastings, premium tobacco"
+  path="/"
+  structuredData={structuredData}
+>
+  <Hero />
+  <Featured />
+  <About />
+  <WhereToBuy />
+  <Experience />
+  <Contact client:visible />
+</Layout>

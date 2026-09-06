@@ -6,13 +6,36 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply font-sans text-dark bg-light;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
+  }
+
+  a, button {
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold text-base transition-all duration-300;
+  }
+
+  .btn-solid {
+    @apply btn bg-secondary text-dark hover:bg-tertiary hover:text-light hover:shadow-lg hover:shadow-secondary/20;
+  }
+
+  .btn-outline {
+    @apply btn border border-secondary text-secondary hover:bg-secondary hover:text-dark;
+  }
+
+  /* Gold band: a nod to the paper ring wrapped around every cigar */
+  .leaf-rule {
+    @apply block w-14 h-[3px] bg-secondary rounded-full;
   }
 }
 
