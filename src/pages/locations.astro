@@ -5,7 +5,8 @@ import LocationsGrid from '../components/LocationsGrid.jsx'
 // Import all location images (resolved to build-time URLs, computed once at build).
 const locationImagesAvif = import.meta.glob('../Locations/*.avif', { eager: true, query: '?url', import: 'default' })
 const locationImagesJpg = import.meta.glob('../Locations/*.jpg', { eager: true, query: '?url', import: 'default' })
-const locationImages = { ...locationImagesAvif, ...locationImagesJpg }
+const locationImagesJpeg = import.meta.glob('../Locations/*.jpeg', { eager: true, query: '?url', import: 'default' })
+const locationImages = { ...locationImagesAvif, ...locationImagesJpg, ...locationImagesJpeg }
 
 // Capitalize first letter of each word
 const capitalizeWords = (str) => {
@@ -95,19 +96,170 @@ const locationFiles = [
   'two guys smoke shop 304 S. broadway, salem, NH 03079.avif',
 ]
 
-// Address mapping for locations that don't have addresses in filename
+// Address mapping for locations that don't have addresses in filename, or whose
+// filename address doesn't match the business's own listed address.
 const addressMapping = {
   'PBR miami country bar.avif': 'Dolphin Mall, 11401 NW 12th St, Miami, FL 33172',
+  // Filename says "503 14th st" - the business's own site lists 505 13th St.
+  'F & M cigars - 503 14th st, phenix city, AL 36867.avif': '505 13th St, Phenix City, AL 36867',
+}
+
+// Phone/website verified directly against each business's own site (or, where a
+// business has no working site of its own, its verified social profile).
+const contactInfo = {
+  'Cigar Castle 11724 N 56th st, tampa, FL 33617.avif': {
+    phone: '8139851300',
+    website: 'https://cigarcastle.com/',
+  },
+  'ECL Eiland Cigar Lounge  & Liquor - 37130 Eiland Blvd, Zephyrhills, FL 33542.jpg': {
+    phone: '8133553859',
+    website: 'https://www.instagram.com/eclcigarlounge/',
+  },
+  'Ash cigar lounge - 92 NH-125, Kingston, NH 03848.avif': {
+    phone: '6032855174',
+    website: 'https://www.ashcigarloungenh.com/',
+  },
+  "Castro's back room - 132 Bedford center rd ste b, bedford, NH 03110.avif": {
+    phone: '6034725878',
+    website: 'https://www.castros.com/',
+  },
+  "Castro's Back Room - 972 Elm St, manchester, NH 03101.avif": {
+    phone: '6036067854',
+    website: 'https://www.castros.com/',
+  },
+  'F & M cigars - 503 14th st, phenix city, AL 36867.avif': {
+    phone: '3342970059',
+    website: 'https://fandmcigars.com/',
+  },
+  "Grumpy's cigars and lounge - 29 Lowell Rd Hudson, NH 03051.avif": {
+    phone: '6034176634',
+    website: 'https://www.grumpyscigarsandlounge.com/',
+  },
+  'PBR miami country bar.avif': {
+    phone: '3052606412',
+    website: 'https://pbrcowboybar.com/locations/',
+  },
+  'Smoke rings 72 cigar & pipe - 925 N Courtenay Pkwy Merritt Island, FL 32953.avif': {
+    phone: '3214531422',
+    website: 'https://smokerings72.com/',
+  },
+  'Stogies & Stories: Cigars, Spirits, and Friends - 3920 W 5th Ave Suite A1, Post Falls, ID 83854.jpg': {
+    phone: '2089810021',
+    website: 'https://stogiesstoriesidaho.com/',
+  },
+  'The Cigar Quarters - 344 E Main St, Haines City, FL 33844.avif': {
+    phone: '8634384761',
+    website: 'https://hcquarters.com/',
+  },
+  'The office cigars Lounge - 36 S Atlantic ave cocoa Beach, FL 32831.avif': {
+    // Rebranded "The Office By Blend & Barrel" - officecigars.com now redirects here.
+    phone: '3212900286',
+    website: 'https://www.theofficecb.com/',
+  },
+  'Tobacco shack - 162 Newburyport Turnpike, Rowley, MA 01969.avif': {
+    phone: '9789482417',
+    // No working website found for this one.
+  },
+  'two guys smoke shop - 741 lafayette rd, seabrook, NH 03874.avif': {
+    phone: '6034748222',
+    website: 'https://www.2guyscigars.com/',
+  },
+  'two guys smoke shop 304 S. broadway, salem, NH 03079.avif': {
+    phone: '6038982221',
+    website: 'https://www.2guyscigars.com/',
+  },
 }
 
 const locations = locationFiles.map((file) => {
   const info = parseLocationInfo(file)
-  if (!info.location && addressMapping[file]) {
+  if (addressMapping[file]) {
     info.location = capitalizeWords(addressMapping[file])
   }
   const imagePath = locationImages[`../Locations/${file}`] || ''
-  return { ...info, image: imagePath }
+  return { ...info, image: imagePath, ...contactInfo[file] }
 })
+
+// New lounges: name/address/phone verified directly against each business's own
+// website, since filenames alone don't carry phone/website data reliably.
+const newLocations = [
+  {
+    file: 'Billows Cigar Haven 1706 Gillionville Rd, Albany, GA 31707 (2295737353).jpeg',
+    name: 'Billows Cigar Haven',
+    location: '1706 Gillionville Rd, Albany, GA 31707',
+    phone: '2295737353',
+    website: 'https://www.billowscigarhaven.com/',
+  },
+  {
+    file: 'Ends of The Earth Cigar Shop 20 W Collings Ave Ste A Collingswood NJ 08108-3729.jpeg',
+    name: 'Ends of The Earth Cigar Shop',
+    location: '20 W Collings Ave Ste A, Collingswood, NJ 08108',
+    phone: '3219484745',
+    website: 'https://www.instagram.com/endsoftheearthcigars/',
+  },
+  {
+    file: 'FatAss Cigar Lounge 8110 US Route 60, Ashland, KY 41102 (6062540484).jpeg',
+    // The business's own site and socials spell this "FatAsh" (as in cigar ash) - the filename appears to be a mishearing.
+    name: 'FatAsh Cigar Lounge',
+    location: '8110 US Route 60, Ashland, KY 41102',
+    phone: '6062540484',
+    website: 'https://fatash.com/',
+  },
+  {
+    file: 'Smoky Justice Cigar Lounge LLC 32840 | 10 W, Boerne, TX 78006 (8304432576).jpeg',
+    name: 'Smoky Justice Cigar Lounge',
+    location: '32840 I-10 W, Boerne, TX 78006',
+    phone: '8304432576',
+    website: 'https://www.smokyjustice.com/',
+  },
+  {
+    file: 'ignite Smoke Lounge 22 W Landis Ave Ste H, Vineland, NJ 08360 (8564120494).jpeg',
+    name: 'Ignite Smoke Lounge',
+    location: '22 W Landis Ave Ste H, Vineland, NJ 08360',
+    phone: '8564120494',
+    website: 'https://www.ignitesmokenj.com/',
+  },
+  {
+    file: 'Granite State Cigar Shop 1325 Union Ave, Laconia, NH 03246 (6036195740).jpeg',
+    name: 'Granite State Cigar Shop',
+    location: '1325 Union Ave, Laconia, NH 03246',
+    phone: '6036195740',
+    website: 'https://www.granitestatecigarshop.com/',
+  },
+  {
+    // Filename had no address at all - found via phone number lookup.
+    file: 'Eight Cigar Lounge (7026767405).jpeg',
+    name: 'Eight Cigar Lounge',
+    location: '3000 S Las Vegas Blvd, Las Vegas, NV 89109',
+    phone: '7026767405',
+    website: 'https://www.eightloungelv.com/',
+  },
+  {
+    file: 'Rustic Cigar Haus 17080 TX-46 Ste 110, Spring Branch, TX 78070 (8305001526).jpeg',
+    name: 'Rustic Cigar Haus',
+    location: '17080 TX-46 W #110, Spring Branch, TX 78070',
+    phone: '8305001526',
+    website: 'https://rusticcigarhaus.com/',
+  },
+  {
+    file: 'BBQ City Cigars 1100 State Park Rd, Suite 115, Lockhart, Texas 78644 (5123594870).jpeg',
+    name: 'BBQ City Cigars',
+    location: '1100 State Park Rd, Suite 115, Lockhart, TX 78644',
+    phone: '5123594870',
+    // No website or social media presence found.
+  },
+  {
+    // No website or additional listing found to verify against - using filename data as-is.
+    file: 'QuittingTime Cigars 2405 10th St Floresville, TX 78114-2768 (2102749656).jpeg',
+    name: 'QuittingTime Cigars',
+    location: '2405 10th St, Floresville, TX 78114',
+    phone: '2102749656',
+  },
+].map((entry) => ({
+  ...entry,
+  image: locationImages[`../Locations/${entry.file}`] || '',
+}))
+
+locations.push(...newLocations)
 
 const getStateFromLocation = (location) => {
   const stateMatch = location.match(/\b([A-Z]{2})\s+\d{5}\b/)
