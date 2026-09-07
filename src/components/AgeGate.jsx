@@ -19,7 +19,7 @@ const AgeGate = ({ currentPath }) => {
       return
     }
 
-    const ageVerified = localStorage.getItem('ageVerified') === 'true'
+    const ageVerified = sessionStorage.getItem('ageVerified') === 'true'
     setIsVerified(ageVerified)
     setShowGate(!ageVerified)
     document.body.style.overflow = ageVerified ? 'unset' : 'hidden'
@@ -32,7 +32,7 @@ const AgeGate = ({ currentPath }) => {
 
   const handleAgeVerification = (isOver21) => {
     if (isOver21) {
-      localStorage.setItem('ageVerified', 'true')
+      sessionStorage.setItem('ageVerified', 'true')
       setIsVerified(true)
       setShowGate(false)
       document.body.style.overflow = 'unset'

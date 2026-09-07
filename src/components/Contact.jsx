@@ -59,10 +59,12 @@ const Contact = () => {
         serviceId,
         templateId,
         {
+          name: formData.name,
           from_name: formData.name,
           from_email: formData.email,
           subject: formData.subject,
           message: formData.message,
+          time: new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }),
         }
       )
 
