@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>New Contact Form Submission</title>
+<!--[if mso]>
+<style type="text/css">
+  table { border-collapse: collapse; }
+  .fallback-font { font-family: Georgia, 'Times New Roman', serif !important; }
+</style>
+<![endif]-->
+</head>
+<body style="margin:0; padding:0; background-color:#F8F8F5;">
+  <!-- Preheader (hidden preview text) -->
+  <div style="display:none; max-height:0; overflow:hidden; mso-hide:all;">
+    New message from {{name}} - {{subject}}
+  </div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#F8F8F5;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px; max-width:600px; background-color:#ffffff; border-radius:12px; overflow:hidden;">
+
+          <!-- Header band -->
+          <tr>
+            <td align="center" style="background-color:#014421; padding:36px 24px 28px 24px;">
+              <img src="https://www.madretierracigars.com/logo.png" width="140" alt="MadreTierra Cigars" style="display:block; width:140px; max-width:140px; height:auto; border:0;" />
+              <div style="margin-top:16px; width:56px; height:3px; background-color:#D4AF37; font-size:0; line-height:0;">&nbsp;</div>
+            </td>
+          </tr>
+
+          <!-- Title -->
+          <tr>
+            <td align="center" style="padding:32px 32px 8px 32px;">
+              <p style="margin:0; font-family:Georgia,'Times New Roman',serif; font-size:26px; font-weight:700; color:#014421;">
+                New Contact Form Submission
+              </p>
+              <p style="margin:8px 0 0 0; font-family:Arial,Helvetica,sans-serif; font-size:14px; color:#0A0A0A99;">
+                Someone reached out through madretierracigars.com
+              </p>
+            </td>
+          </tr>
+
+          <!-- Sender details card -->
+          <tr>
+            <td style="padding:24px 32px 0 32px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#F8F8F5; border-radius:10px;">
+                <tr>
+                  <td style="padding:20px 24px;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="padding:6px 0; font-family:Arial,Helvetica,sans-serif; font-size:13px; color:#7B4F28; font-weight:700; width:90px; vertical-align:top;">Name</td>
+                        <td style="padding:6px 0; font-family:Arial,Helvetica,sans-serif; font-size:15px; color:#0A0A0A;">{{name}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:6px 0; font-family:Arial,Helvetica,sans-serif; font-size:13px; color:#7B4F28; font-weight:700; vertical-align:top;">Email</td>
+                        <td style="padding:6px 0; font-family:Arial,Helvetica,sans-serif; font-size:15px;">
+                          <a href="mailto:{{from_email}}" style="color:#014421; text-decoration:underline;">{{from_email}}</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:6px 0; font-family:Arial,Helvetica,sans-serif; font-size:13px; color:#7B4F28; font-weight:700; vertical-align:top;">Subject</td>
+                        <td style="padding:6px 0; font-family:Arial,Helvetica,sans-serif; font-size:15px; color:#0A0A0A;">{{subject}}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:6px 0; font-family:Arial,Helvetica,sans-serif; font-size:13px; color:#7B4F28; font-weight:700; vertical-align:top;">Received</td>
+                        <td style="padding:6px 0; font-family:Arial,Helvetica,sans-serif; font-size:15px; color:#0A0A0A;">{{time}}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Message -->
+          <tr>
+            <td style="padding:24px 32px 8px 32px;">
+              <p style="margin:0 0 10px 0; font-family:Arial,Helvetica,sans-serif; font-size:13px; font-weight:700; color:#7B4F28; text-transform:uppercase; letter-spacing:0.06em;">
+                Message
+              </p>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-left:3px solid #D4AF37;">
+                <tr>
+                  <td style="padding:4px 0 4px 18px; font-family:Arial,Helvetica,sans-serif; font-size:15px; line-height:1.6; color:#0A0A0A;">
+                    {{message}}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Reply button -->
+          <tr>
+            <td align="center" style="padding:28px 32px 36px 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="center" style="border-radius:999px; background-color:#D4AF37;">
+                    <a href="mailto:{{from_email}}?subject=Re: {{subject}}"
+                       style="display:inline-block; padding:14px 32px; font-family:Arial,Helvetica,sans-serif; font-size:14px; font-weight:700; color:#0A0A0A; text-decoration:none; border-radius:999px;">
+                      Reply to {{name}}
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td align="center" style="background-color:#0A0A0A; padding:24px 32px;">
+              <img src="https://www.madretierracigars.com/logo.png" width="72" alt="MadreTierra Cigars" style="display:block; width:72px; max-width:72px; height:auto; border:0; margin:0 auto 12px auto; opacity:0.9;" />
+              <p style="margin:0; font-family:Arial,Helvetica,sans-serif; font-size:12px; color:#F8F8F599;">
+                &copy; 2026 MadreTierra Cigars. Handcrafted excellence in every cigar.
+              </p>
+              <p style="margin:10px 0 0 0; font-family:Arial,Helvetica,sans-serif; font-size:10px; color:#F8F8F566; font-style:italic;">
+                Surgeon General's Warning: Cigar Smoking Can Cause Cancers Of The Mouth And Throat, Even If You Do Not Inhale.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
