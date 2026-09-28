@@ -254,6 +254,27 @@ const newLocations = [
     location: '2405 10th St, Floresville, TX 78114',
     phone: '2102749656',
   },
+  {
+    // No working website found - using verified Instagram instead.
+    file: 'Ciudad Señorial Cigar Lounge (84 C. Estrella, Ponce, 00730, Puerto Rico).jpeg',
+    name: 'Ciudad Señorial Cigar Lounge',
+    location: '84 C. Estrella, Ponce, PR 00730',
+    website: 'https://www.instagram.com/ciudadsenorialcigar/',
+  },
+  {
+    file: 'George & Dragon English Tavern 502 Brevard Ave, Cocoa, FL 32922.jpeg',
+    name: 'George & Dragon English Tavern',
+    location: '502 Brevard Ave, Cocoa, FL 32922',
+    phone: '3218770089',
+    website: 'https://www.georgeanddragonbritishpub.com/',
+  },
+  {
+    // No working website found - using verified Facebook page instead.
+    file: 'Jackpot & Cigar Cafe (Calle Salvador Brau #74, Cabo Rojo.).jpeg',
+    name: 'Jackpot & Cigar Cafe',
+    location: 'Calle Salvador Brau #74, Cabo Rojo, PR 00623',
+    website: 'https://www.facebook.com/61585463093893',
+  },
 ].map((entry) => ({
   ...entry,
   image: locationImages[`../Locations/${entry.file}`] || '',
