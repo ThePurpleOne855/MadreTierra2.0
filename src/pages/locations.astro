@@ -275,6 +275,26 @@ const newLocations = [
     location: 'Calle Salvador Brau #74, Cabo Rojo, PR 00623',
     website: 'https://www.facebook.com/61585463093893',
   },
+  {
+    // No website or listing found online - using filename data as-is.
+    file: 'The Wandering Tobacconist 302 Taylorton Rd, McDermott, OH 45652.jpeg',
+    name: 'The Wandering Tobacconist',
+    location: '302 Taylorton Rd, McDermott, OH 45652',
+  },
+  {
+    file: 'FatAsh Cigar Lounge 8110 US Route 60, Ashland, KY 41102.jpeg',
+    name: 'FatAsh Cigar Lounge',
+    location: '8110 US Route 60, Lot 2, Ashland, KY 41102',
+    phone: '6062540484',
+    website: 'https://fatash.com/',
+  },
+  {
+    file: 'Village Cigars 1044 S High St, Columbus, OH 43206.jpeg',
+    name: 'Village Cigars',
+    location: '1044 S High St, Columbus, OH 43206',
+    phone: '6147250013',
+    website: 'https://villagecigarscolumbus.com/',
+  },
 ].map((entry) => ({
   ...entry,
   image: locationImages[`../Locations/${entry.file}`] || '',
@@ -311,7 +331,7 @@ const states = [...new Set(locations.map((loc) => getStateFromLocation(loc.locat
       <LocationsGrid client:load locations={locations} states={states} />
 
       <div class="mt-20 text-center">
-        <div class="bg-gradient-to-br from-primary to-dark rounded-2xl p-12 text-light">
+        <div class="bg-linear-to-br from-primary to-dark rounded-2xl p-12 text-light">
           <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">
             Can't find a location?
           </h2>
