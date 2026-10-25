@@ -151,7 +151,7 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-primary/20 rounded-xl focus:outline-none focus:border-secondary transition-colors duration-300 text-dark bg-light"
+                className="w-full px-4 py-3 border border-primary/20 rounded-xl focus:outline-hidden focus:border-secondary transition-colors duration-300 text-dark bg-light"
                 placeholder="Your name"
               />
             </div>
@@ -168,7 +168,7 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-primary/20 rounded-xl focus:outline-none focus:border-secondary transition-colors duration-300 text-dark bg-light"
+                className="w-full px-4 py-3 border border-primary/20 rounded-xl focus:outline-hidden focus:border-secondary transition-colors duration-300 text-dark bg-light"
                 placeholder="your.email@example.com"
               />
             </div>
@@ -185,7 +185,7 @@ const Contact = () => {
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-primary/20 rounded-xl focus:outline-none focus:border-secondary transition-colors duration-300 text-dark bg-light"
+                className="w-full px-4 py-3 border border-primary/20 rounded-xl focus:outline-hidden focus:border-secondary transition-colors duration-300 text-dark bg-light"
                 placeholder="What is this regarding?"
               />
             </div>
@@ -202,7 +202,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 rows={6}
-                className="w-full px-4 py-3 border border-primary/20 rounded-xl focus:outline-none focus:border-secondary transition-colors duration-300 text-dark bg-light resize-none"
+                className="w-full px-4 py-3 border border-primary/20 rounded-xl focus:outline-hidden focus:border-secondary transition-colors duration-300 text-dark bg-light resize-none"
                 placeholder="Your message..."
               />
             </div>

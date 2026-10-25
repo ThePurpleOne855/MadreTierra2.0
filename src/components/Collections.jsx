@@ -33,7 +33,7 @@ const CollectionCard = ({ title, description, reverse = false }) => {
       className="grid grid-cols-1 md:grid-cols-2 gap-0 mb-20 min-h-[500px] shadow-2xl transition-all duration-500 opacity-0 translate-y-8 hover:-translate-y-1"
     >
       <div
-        className={`relative bg-gradient-to-br from-primary to-tertiary overflow-hidden ${
+        className={`relative bg-linear-to-br from-primary to-tertiary overflow-hidden ${
           reverse ? "md:order-2" : ""
         }`}
       >

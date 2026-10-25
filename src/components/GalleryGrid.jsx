@@ -40,7 +40,7 @@ const MediaLightbox = ({ media, isOpen, onClose, mediaName, type, isAudio }) => 
   if (!isOpen || !media) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark/95 backdrop-blur-sm" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark/95 backdrop-blur-xs" onClick={onClose}>
       <div
         className="relative max-w-6xl w-full max-h-[90vh] flex items-center justify-center"
         onClick={(e) => e.stopPropagation()}
@@ -124,11 +124,11 @@ const GalleryItem = ({ media, name, type, onClick, isAudio }) => {
       onClick={onClick}
       className="group relative bg-light rounded-2xl overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl cursor-pointer aspect-square"
     >
-      <div className="relative w-full h-full bg-gradient-to-br from-primary to-tertiary overflow-hidden">
+      <div className="relative w-full h-full bg-linear-to-br from-primary to-tertiary overflow-hidden">
         {type === 'video' ? (
           shouldLoadVideo ? (
             isAudio ? (
-              <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-primary to-tertiary">
+              <div className="w-full h-full flex flex-col items-center justify-center bg-linear-to-br from-primary to-tertiary">
                 <div className="mb-4">
                   <svg className="w-24 h-24 text-light/80 mx-auto" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
@@ -156,7 +156,7 @@ const GalleryItem = ({ media, name, type, onClick, isAudio }) => {
               />
             )
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-primary/50 to-tertiary/50 flex items-center justify-center">
+            <div className="w-full h-full bg-linear-to-br from-primary/50 to-tertiary/50 flex items-center justify-center">
               <div className="text-center">
                 <svg className="w-16 h-16 text-light/50 mx-auto mb-2" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />

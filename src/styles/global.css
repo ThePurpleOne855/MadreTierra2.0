@@ -1,6 +1,62 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #014421;
+  --color-secondary: #d4af37;
+  --color-tertiary: #7b4f28;
+  --color-dark: #0a0a0a;
+  --color-light: #f8f8f5;
+
+  --font-serif: Playfair Display, serif;
+  --font-sans: Lato, sans-serif;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold text-base transition-all duration-300;
+}
+
+@utility btn-solid {
+  @apply btn bg-secondary text-dark hover:bg-tertiary hover:text-light hover:shadow-lg hover:shadow-secondary/20;
+}
+
+@utility btn-outline {
+  @apply btn border border-secondary text-secondary hover:bg-secondary hover:text-dark;
+}
+
+@utility leaf-rule {
+  /* Gold band: a nod to the paper ring wrapped around every cigar */
+  @apply block w-14 h-[3px] bg-secondary rounded-full;
+}
+
+@utility animate-fade-in-up {
+  animation: fadeInUp 1s ease;
+}
+
+@utility bg-gradient-radial {
+  background: radial-gradient(
+    circle at center,
+    transparent 0%,
+    rgba(10, 10, 10, 0.7) 100%
+  );
+}
 
 @layer base {
   html {
@@ -16,34 +72,11 @@
   }
 
   a, button {
-    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary;
-  }
-}
-
-@layer components {
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold text-base transition-all duration-300;
-  }
-
-  .btn-solid {
-    @apply btn bg-secondary text-dark hover:bg-tertiary hover:text-light hover:shadow-lg hover:shadow-secondary/20;
-  }
-
-  .btn-outline {
-    @apply btn border border-secondary text-secondary hover:bg-secondary hover:text-dark;
-  }
-
-  /* Gold band: a nod to the paper ring wrapped around every cigar */
-  .leaf-rule {
-    @apply block w-14 h-[3px] bg-secondary rounded-full;
+    @apply focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary;
   }
 }
 
 @layer utilities {
-  .animate-fade-in-up {
-    animation: fadeInUp 1s ease;
-  }
-  
   @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -53,10 +86,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-  }
-  
-  .bg-gradient-radial {
-    background: radial-gradient(circle at center, transparent 0%, rgba(10, 10, 10, 0.7) 100%);
   }
   
   @keyframes fadeInScale {

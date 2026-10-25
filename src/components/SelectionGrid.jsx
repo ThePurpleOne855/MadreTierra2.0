@@ -71,7 +71,7 @@ const CigarLightbox = ({ cigar, isOpen, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark/95 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark/95 backdrop-blur-xs"
       onClick={onClose}
     >
       <div
@@ -90,7 +90,7 @@ const CigarLightbox = ({ cigar, isOpen, onClose }) => {
         {/* Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
           {/* Image Section */}
-          <div className="relative h-96 md:h-auto bg-gradient-to-br from-primary to-tertiary">
+          <div className="relative h-96 md:h-auto bg-linear-to-br from-primary to-tertiary">
             <img
               src={cigar.image}
               alt={cigar.name}
@@ -99,7 +99,7 @@ const CigarLightbox = ({ cigar, isOpen, onClose }) => {
                 e.target.style.display = 'none'
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent"></div>
+            <div className="absolute inset-0 bg-linear-to-t from-dark/60 to-transparent"></div>
             <div className="absolute bottom-6 left-6 right-6">
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-light mb-2">
                 {cigar.name}
@@ -188,7 +188,7 @@ const CigarCard = ({ name, image, strength, size, wrapper, binder, filler, onCli
       className="group relative bg-light rounded-2xl overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl cursor-pointer"
     >
       {/* Image Container */}
-      <div className="relative h-80 bg-gradient-to-br from-primary to-tertiary overflow-hidden">
+      <div className="relative h-80 bg-linear-to-br from-primary to-tertiary overflow-hidden">
         <img
           src={image}
           alt={name}
@@ -198,7 +198,7 @@ const CigarCard = ({ name, image, strength, size, wrapper, binder, filler, onCli
             e.target.nextSibling.style.display = 'flex'
           }}
         />
-        <div className="hidden absolute inset-0 items-center justify-center bg-gradient-to-br from-primary/80 to-tertiary/80">
+        <div className="hidden absolute inset-0 items-center justify-center bg-linear-to-br from-primary/80 to-tertiary/80">
           <div className="text-center">
             <div className="text-6xl mb-4">🚬</div>
             <p className="text-light font-serif text-xl">{name}</p>
@@ -206,7 +206,7 @@ const CigarCard = ({ name, image, strength, size, wrapper, binder, filler, onCli
         </div>
         
         {/* Overlay Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         
         {/* Strength Badge */}
         <div className={`absolute top-4 right-4 px-3 py-1 rounded-full border text-xs font-semibold uppercase tracking-wider ${getStrengthBadge(strength)}`}>

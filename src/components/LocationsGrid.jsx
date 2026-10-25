@@ -20,7 +20,7 @@ const LeaveSiteConfirm = ({ location, onCancel, onConfirm }) => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark/80 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark/80 backdrop-blur-xs"
       onClick={onCancel}
     >
       <div
@@ -33,7 +33,7 @@ const LeaveSiteConfirm = ({ location, onCancel, onConfirm }) => {
         <p className="text-dark/70 mb-2">
           You're about to visit <span className="font-semibold text-dark">{location.name}</span>'s website:
         </p>
-        <p className="text-secondary font-semibold mb-6 break-words">
+        <p className="text-secondary font-semibold mb-6 wrap-break-word">
           {getWebsiteLabel(location.website)}
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -57,7 +57,7 @@ const LocationCard = ({ name, location, image, phone, website, onVisitWebsite })
     <div className="group relative bg-light rounded-2xl overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl">
       <ImageWrapper
         type={website ? 'button' : undefined}
-        className={`relative w-full h-64 block bg-gradient-to-br from-primary to-tertiary overflow-hidden text-left ${website ? 'cursor-pointer' : ''}`}
+        className={`relative w-full h-64 block bg-linear-to-br from-primary to-tertiary overflow-hidden text-left ${website ? 'cursor-pointer' : ''}`}
         onClick={website ? onVisitWebsite : undefined}
         aria-label={website ? `Visit ${name}'s website` : undefined}
       >
@@ -70,13 +70,13 @@ const LocationCard = ({ name, location, image, phone, website, onVisitWebsite })
             e.target.nextSibling.style.display = 'flex'
           }}
         />
-        <div className="hidden absolute inset-0 items-center justify-center bg-gradient-to-br from-primary/80 to-tertiary/80">
+        <div className="hidden absolute inset-0 items-center justify-center bg-linear-to-br from-primary/80 to-tertiary/80">
           <div className="text-center p-4">
             <div className="text-5xl mb-2">📍</div>
             <p className="text-light font-serif text-lg">{name}</p>
           </div>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-dark/90 via-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         {website && (
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <span className="px-4 py-2 bg-dark/80 text-light text-sm font-semibold rounded-full">
@@ -142,7 +142,7 @@ const LocationsGrid = ({ locations, states }) => {
             placeholder="Search by store name or location..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full px-6 py-4 bg-white border border-primary/20 rounded-xl focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 text-dark placeholder-dark/50 transition-colors duration-300"
+            className="w-full px-6 py-4 bg-white border border-primary/20 rounded-xl focus:outline-hidden focus:border-secondary focus:ring-2 focus:ring-secondary/20 text-dark placeholder-dark/50 transition-colors duration-300"
           />
         </div>
 

@@ -86,11 +86,11 @@ const Navbar = () => {
           cls.includes('bg-dark') || 
           cls.includes('from-primary') ||
           cls.includes('from-dark') ||
-          cls.includes('bg-gradient-to-br')
+          cls.includes('bg-linear-to-br')
         ) || className.includes('bg-dark') || 
            className.includes('from-primary') || 
            className.includes('from-dark') ||
-           className.includes('bg-gradient-to-br')
+           className.includes('bg-linear-to-br')
         
         isLight = hasLightBg && !hasDarkBg
       } else if (hasPageLightBg) {
@@ -144,8 +144,8 @@ const Navbar = () => {
 
   // Determine navbar colors based on background
   const navBgClass = isLightBackground
-    ? (scrolled ? 'bg-light/90 shadow-sm' : 'bg-light/70')
-    : (scrolled ? 'bg-dark/90 shadow-sm' : 'bg-dark/60')
+    ? (scrolled ? 'bg-light/90 shadow-xs' : 'bg-light/70')
+    : (scrolled ? 'bg-dark/90 shadow-xs' : 'bg-dark/60')
 
   const navTextClass = isLightBackground
     ? 'text-dark hover:text-secondary'
